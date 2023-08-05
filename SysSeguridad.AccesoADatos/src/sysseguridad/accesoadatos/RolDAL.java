@@ -119,7 +119,7 @@ public class RolDAL { // Clase para poder realizar consulta de Insertar, modific
         }
     }
     
-   // Metodo para obtener por Id un registro de la tabla de Rol 
+    // Metodo para obtener por Id un registro de la tabla de Rol 
     public static Rol obtenerPorId(Rol pRol) throws Exception {
         Rol rol = new Rol();
         ArrayList<Rol> roles = new ArrayList();
