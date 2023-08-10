@@ -20,13 +20,13 @@ public class Proveedor {
     public String Descripcion;
     public String Direccion;
     private int top_aux;
-    private ArrayList<Categoria> categorias;
-    private ArrayList<Producto> productos;
+    private ArrayList<Categoria> Categoria;
+    private ArrayList<Producto> Producto;
 
     public Proveedor() {
     }
 
-    public Proveedor(int IdProveedor, int CodProveedor, String Nombre, String Empresa, String Telefono, String Descripcion, String Direccion, int top_aux, ArrayList<Categoria> categorias, ArrayList<Producto> productos) {
+    public Proveedor(int IdProveedor, int CodProveedor, String Nombre, String Empresa, String Telefono, String Descripcion, String Direccion, int top_aux, ArrayList<Categoria> Categoria, ArrayList<Producto> Producto) {
         this.IdProveedor = IdProveedor;
         this.CodProveedor = CodProveedor;
         this.Nombre = Nombre;
@@ -35,8 +35,8 @@ public class Proveedor {
         this.Descripcion = Descripcion;
         this.Direccion = Direccion;
         this.top_aux = top_aux;
-        this.categorias = categorias;
-        this.productos = productos;
+        this.Categoria = Categoria;
+        this.Producto = Producto;
     }
 
     public int getIdProveedor() {
@@ -103,20 +103,21 @@ public class Proveedor {
         this.top_aux = top_aux;
     }
 
-    public ArrayList<Categoria> getCategorias() {
-        return categorias;
+    public ArrayList<Categoria> getCategoria() {
+        return Categoria;
     }
 
-    public void setCategorias(ArrayList<Categoria> categorias) {
-        this.categorias = categorias;
+    public void setCategoria(ArrayList<Categoria> Categoria) {
+        this.Categoria = Categoria;
     }
 
-    public ArrayList<Producto> getProductos() {
-        return productos;
+    public ArrayList<Producto> getProducto() {
+        return Producto;
     }
 
-    public void setProductos(ArrayList<Producto> productos) {
-        this.productos = productos;
+    public void setProducto(ArrayList<Producto> Producto) {
+        this.Producto = Producto;
     }
 
+   
 }

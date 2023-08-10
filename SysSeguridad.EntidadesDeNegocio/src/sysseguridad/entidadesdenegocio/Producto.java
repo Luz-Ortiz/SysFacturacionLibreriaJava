@@ -18,12 +18,12 @@ public class Producto {
     private float Existencia;
     private int top_aux;
     private ArrayList<Categoria> Categoria;
-    private ArrayList<Proveedor> proveedor;
+    private ArrayList<Proveedor> Proveedor;
 
     public Producto() {
     }
 
-    public Producto(int IdProducto, String Nombre, String Descripcion, float precio, float Existencia, int top_aux, ArrayList<Categoria> Categoria, ArrayList<Proveedor> proveedor) {
+    public Producto(int IdProducto, String Nombre, String Descripcion, float precio, float Existencia, int top_aux, ArrayList<Categoria> Categoria, ArrayList<Proveedor> Proveedor) {
         this.IdProducto = IdProducto;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
@@ -31,11 +31,8 @@ public class Producto {
         this.Existencia = Existencia;
         this.top_aux = top_aux;
         this.Categoria = Categoria;
-        this.proveedor = proveedor;
+        this.Proveedor = Proveedor;
     }
-
-    
-    
 
     public int getIdProducto() {
         return IdProducto;
@@ -84,7 +81,6 @@ public class Producto {
     public void setTop_aux(int top_aux) {
         this.top_aux = top_aux;
     }
-    
 
     public ArrayList<Categoria> getCategoria() {
         return Categoria;
@@ -95,16 +91,12 @@ public class Producto {
     }
 
     public ArrayList<Proveedor> getProveedor() {
-        return proveedor;
+        return Proveedor;
     }
 
-    public void setProveedor(ArrayList<Proveedor> proveedor) {
-        this.proveedor = proveedor;
+    public void setProveedor(ArrayList<Proveedor> Proveedor) {
+        this.Proveedor = Proveedor;
     }
-    
-    
-    
-    
-    
+
     
 }
