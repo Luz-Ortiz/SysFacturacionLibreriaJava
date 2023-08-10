@@ -1,5 +1,5 @@
-package sysseguridad.appweb.controllers;
 
+package sysseguridad.appweb.controllers;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,53 +8,53 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;  // Importar la clase ArrayList
-import sysseguridad.accesoadatos.RolDAL; // Importar la clase RolDAL de la capa de acceso a datos
-import sysseguridad.entidadesdenegocio.Rol;// Importar la clase Rol de la capa de entidades de negocio
+import sysseguridad.accesoadatos.ProductoDaL; // Importar la clase ProductoDAL de la capa de acceso a datos
+import sysseguridad.entidadesdenegocio.Producto;// Importar la clase Producto de la capa de entidades de negocio
 import sysseguridad.appweb.utils.*;// Importar las clases SessionUser, Utilidad del paquete de utils
 
 /**
  * En este Servlet, vamos a recibir todas las peticiones get y post que se
- * realice al Servlet Rol. Aprender conceptos básicos de servlets
+ * realice al Servlet Producto. Aprender conceptos básicos de servlets
  * http://www.jtech.ua.es/j2ee/2002-2003/modulos/servlets/apuntes/apuntes1_1.htm
  * Actualizamos la anotación WebServlet para cambiar el atributo urlPatterns
- * para acceder al Servlet Rol utilizando la siguiente Url: la del sitio web mas
- * /Rol
+ * para acceder al Servlet Producto utilizando la siguiente Url: la del sitio web mas
+ * /Producto
  */
-@WebServlet(name = "RolServlet", urlPatterns = {"/Rol"})
-public class RolServlet extends HttpServlet {
+@WebServlet(name = "ProductoServlet", urlPatterns = {"/Producto"})
+public class ProductoServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="Metodos para procesar las solicitudes get o post del Servlet">
     /**
      * En este método vamos a obtener la información enviada, en una peticion
      * get o post, obteniendo los datos de los parámetros enviados de un
      * formulario o la url del navegador, enviar esa información a una instancia
-     * de la entidad Rol
+     * de la entidad Producto
      *
      * @param request en este parámetro vamos a recibir el request de la
      * peticion get o post enviada al servlet Rol
-     * @return Rol devolver la instancia de la entidad Rol con los valores
+     * @return Producto devolver la instancia de la entidad Producto con los valores
      * obtenidos del request
      */
-    private Rol obtenerRol(HttpServletRequest request) {
+    private Producto obtenerProducto(HttpServletRequest request) {
         // Obtener el parámetro accion del request
         String accion = Utilidad.getParameter(request, "accion", "index");
-        Rol rol = new Rol();
+        Producto Producto = new Producto();
         if (accion.equals("create") == false) { // Si la accion no es create.
-            // Obtener el parámetro id del request  y asignar ese valor a la propiedad Id de Rol.
-            rol.setId(Integer.parseInt(Utilidad.getParameter(request, "id", "0")));
+            // Obtener el parámetro idProducto del request  y asignar ese valor a la propiedad Id de Producto.
+            Producto.setIdProducto(Integer.parseInt(Utilidad.getParameter(request, "idProducto", "0")));
         }
-        // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Rol.
-        rol.setNombre(Utilidad.getParameter(request, "nombre", ""));
+        // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Producto.
+        Producto.setNombre(Utilidad.getParameter(request, "nombre", ""));
         if (accion.equals("index")) {  // Si accion es index.
-            // Obtener el parámetro top_aux del request  y asignar ese valor a la propiedad Top_aux de Rol.
-            rol.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
+            // Obtener el parámetro top_aux del request  y asignar ese valor a la propiedad Top_aux de Producto.
+            Producto.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
             // Utilizando un operador ternario, colocar en el Top_aux, si  es igual a cero enviar en el Top_aux, el valor maximo de un entero 
             // en java, para obtener todos los registro, en el caso contrario obtener la cantidad de registros
             // que se obtiene en el parámetro top_aux del request.
-            rol.setTop_aux(rol.getTop_aux() == 0 ? Integer.MAX_VALUE : rol.getTop_aux());
+            Producto.setTop_aux(Producto.getTop_aux() == 0 ? Integer.MAX_VALUE : Producto.getTop_aux());
         }
         // Devolver la instancia de la entidad Rol con los valores obtenidos del request.
-        return rol;
+        return Producto;
     }
 
     /**
@@ -63,7 +63,7 @@ public class RolServlet extends HttpServlet {
      * enviar los datos de los roles al jsp de index de Rol.
      *
      * @param request en este parámetro vamos a recibir el request de la
-     * peticion get enviada al servlet Rol
+     * peticion get enviada al servlet Producto
      * @param response en este parámetro vamos a recibir el response de la
      * peticion get enviada al servlet Rol que utlizaremos para enviar el jsp
      * @throws javax.servlet.ServletException
@@ -71,15 +71,15 @@ public class RolServlet extends HttpServlet {
      */
     private void doGetRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Rol rol = new Rol(); // Crear una instancia  de la entidad de Rol.
-            rol.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de rol.
-            ArrayList<Rol> roles = RolDAL.buscar(rol); // Ir a la capa de acceso a datos y buscar los registros de Rol.
+            Producto Producto = new Producto(); // Crear una instancia  de la entidad de Rol.
+            Producto.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de Producto.
+            ArrayList<Producto> Producto = ProductoDAL.buscar(Producto); // Ir a la capa de acceso a datos y buscar los registros de .
             // El request.setAttribute se utiliza para enviar datos desde un servlet a un jsp.
-            request.setAttribute("roles", roles); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles.
+            request.setAttribute("Producto", Producto); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles.
             // Enviar el Top_aux de Rol al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
-            request.setAttribute("top_aux", rol.getTop_aux());
+            request.setAttribute("top_aux", Producto.getTop_aux());
             // El request.getRequestDispatcher nos permite direccionar a un jsp desde un servlet.              
-            request.getRequestDispatcher("Views/Rol/index.jsp").forward(request, response); // Direccionar al jsp index de Rol.
+            request.getRequestDispatcher("Views/Producto/index.jsp").forward(request, response); // Direccionar al jsp index de Rol.
         } catch (Exception ex) {
             Utilidad.enviarError(ex.getMessage(), request, response); // Enviar al jsp de error si hay un Exception.
         }
@@ -98,11 +98,11 @@ public class RolServlet extends HttpServlet {
      */
     private void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request 
-            ArrayList<Rol> roles = RolDAL.buscar(rol); // Buscar los roles que cumple con los datos enviados en el request
-            request.setAttribute("roles", roles); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles
+             Producto = obtenerProducto(request); // Llenar la instancia de Rol con los parámetros enviados en el request 
+            ArrayList<Producto> Producto = ProductoDAL.buscar(Producto); // Buscar los roles que cumple con los datos enviados en el request
+            request.setAttribute("roles", Producto); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles
             // Enviar el Top_aux de Rol al jsp utilizando el request.setAttribute con el nombre del atributo top_aux
-            request.setAttribute("top_aux", rol.getTop_aux());
+            request.setAttribute("top_aux", Producto.getTop_aux());
             request.getRequestDispatcher("Views/Rol/index.jsp").forward(request, response); // Direccionar al jsp index de Rol
         } catch (Exception ex) {
             // Enviar al jsp de error si hay un Exception 
