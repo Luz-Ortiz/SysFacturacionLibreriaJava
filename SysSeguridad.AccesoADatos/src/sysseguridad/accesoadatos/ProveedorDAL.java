@@ -10,7 +10,6 @@ package sysseguridad.accesoadatos;
  */
 import java.util.*; 
 import java.sql.*;
-import static sysseguridad.accesoadatos.RolDAL.querySelect;
 import sysseguridad.entidadesdenegocio.*;
 
 public class ProveedorDAL {
