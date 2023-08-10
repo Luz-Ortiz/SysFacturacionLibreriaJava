@@ -17,7 +17,7 @@ public class ProveedorDAL {
     
     // Metodo para obtener los campos a utilizar en la consulta SELECT de la tabla de Proveedor
     static String obtenerCampos() {
-    return "p.IdProveedor,d.CodProveedor,p.Nombre,p.Empresa,p.Telefono,p.Descripcion,p.Direccion,pIdProducto";
+    return "p.IdProveedor,p.CodProveedor,p.Nombre,p.Empresa,p.Telefono,p.Descripcion,p.Direccion,p.IdProducto";
  }
         // Metodo para obtener el SELECT a la tabla Proveedor y el TOP en el caso que se utilice una base de datos SQL SERVER
     private static String obtenerSelect(Proveedor pProveedor) {
@@ -33,7 +33,7 @@ public class ProveedorDAL {
     
     // Metodo para obtener Order by a la consulta SELECT de la tabla Proveedor y ordene los registros de mayor a menor 
      private static String agregarOrderBy(Proveedor pProveedor) {
-        String sql = " ORDER BY r.Id DESC";
+        String sql = " ORDER BY p.IdProveedor DESC";
         if (pProveedor.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.MYSQL) {
             // Agregar el LIMIT a la consulta SELECT de la tabla de Proveedor en el caso que getTop_aux() sea mayor a cero y el gestor de base de datos
             // sea MYSQL
@@ -46,7 +46,7 @@ public class ProveedorDAL {
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-            sql = "INSERT INTO Proveedor (CodProveedor,Nombre,Empresa,Telefono,Descripcion,Direccion) VALUES(?,?,?,?)"; // Definir la consulta INSERT a la tabla de Producto utilizando el simbolo ? para enviar parametros
+            sql = "INSERT INTO Proveedor (CodProveedor,Nombre,Empresa,Telefono,Descripcion,Direccion) VALUES(?,?,?,?,?,?)"; // Definir la consulta INSERT a la tabla de Producto utilizando el simbolo ? para enviar parametros
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pProveedor.getCodProveedor());
                 ps.setString(2, pProveedor.getNombre()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
@@ -97,7 +97,7 @@ public class ProveedorDAL {
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-            sql = "DELETE FROM Proveedor WHERE Id=?";  // Definir la consulta DELETE a la tabla de Producto utilizando el simbolo ? para enviar parametros
+            sql = "DELETE FROM Proveedor WHERE IdProveedor=?";  // Definir la consulta DELETE a la tabla de Producto utilizando el simbolo ? para enviar parametros
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pProveedor.getIdProveedor()); // Agregar el parametro a la consulta donde estan el simbolo ? #1 
                 result = ps.executeUpdate();  // Ejecutar la consulta DELETE en la base de datos
