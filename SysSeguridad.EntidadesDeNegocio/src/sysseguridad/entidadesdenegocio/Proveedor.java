@@ -4,7 +4,7 @@
  */
 package sysseguridad.entidadesdenegocio;
 
-import java.sql.ResultSet;
+
 import java.util.ArrayList;
 
 /**
@@ -20,13 +20,12 @@ public class Proveedor {
     public String Descripcion;
     public String Direccion;
     private int top_aux;
-    private ArrayList<Categoria> Categoria;
     private ArrayList<Producto> Producto;
 
     public Proveedor() {
     }
 
-    public Proveedor(int IdProveedor, int CodProveedor, String Nombre, String Empresa, String Telefono, String Descripcion, String Direccion, int top_aux, ArrayList<Categoria> Categoria, ArrayList<Producto> Producto) {
+    public Proveedor(int IdProveedor, int CodProveedor, String Nombre, String Empresa, String Telefono, String Descripcion, String Direccion, int top_aux, ArrayList<Producto> Producto) {
         this.IdProveedor = IdProveedor;
         this.CodProveedor = CodProveedor;
         this.Nombre = Nombre;
@@ -35,7 +34,6 @@ public class Proveedor {
         this.Descripcion = Descripcion;
         this.Direccion = Direccion;
         this.top_aux = top_aux;
-        this.Categoria = Categoria;
         this.Producto = Producto;
     }
 
@@ -103,14 +101,6 @@ public class Proveedor {
         this.top_aux = top_aux;
     }
 
-    public ArrayList<Categoria> getCategoria() {
-        return Categoria;
-    }
-
-    public void setCategoria(ArrayList<Categoria> Categoria) {
-        this.Categoria = Categoria;
-    }
-
     public ArrayList<Producto> getProducto() {
         return Producto;
     }
@@ -119,5 +109,6 @@ public class Proveedor {
         this.Producto = Producto;
     }
 
+   
    
 }
