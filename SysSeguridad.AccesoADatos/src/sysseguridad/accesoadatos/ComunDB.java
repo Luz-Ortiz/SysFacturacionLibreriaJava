@@ -17,7 +17,7 @@ public class ComunDB {
             + "database=SysLibreria;"
             + "user=Montoya0422_SQLLogin_1;"
             + "password=hildopuwkr;"
-            + "loginTimeout=30; encrypt=true;trustServerCertificate=true;";
+            + "loginTimeout=30;encrypt=true;trustServerCertificate=true;";
     
     // Documentacion para entender por que se esta utilizando throws SQLException
     // en los siguientes metodos --> http://dis.um.es/~bmoros/Tutorial/parte9/cap9-3.html
