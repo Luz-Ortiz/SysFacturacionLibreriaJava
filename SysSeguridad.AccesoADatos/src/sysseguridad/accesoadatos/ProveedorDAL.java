@@ -17,7 +17,7 @@ public class ProveedorDAL {
     
     // Metodo para obtener los campos a utilizar en la consulta SELECT de la tabla de Proveedor
     static String obtenerCampos() {
-    return "p.IdProveedor,p.CodProveedor,p.Nombre,p.Empresa,p.Telefono,p.Descripcion,p.Direccion,p.IdProducto";
+    return "p.IdProveedor,p.CodProveedor,p.Nombre,p.Empresa,p.Telefono,p.Descripcion,p.Direccion";
  }
         // Metodo para obtener el SELECT a la tabla Proveedor y el TOP en el caso que se utilice una base de datos SQL SERVER
     private static String obtenerSelect(Proveedor pProveedor) {
@@ -79,6 +79,7 @@ public class ProveedorDAL {
                 ps.setString(4, pProveedor.getTelefono());
                 ps.setString(5, pProveedor.getDescripcion());
                 ps.setString(6, pProveedor.getDireccion());
+                ps.setInt(7, pProveedor.getIdProveedor());
                 result = ps.executeUpdate(); // Ejecutar la consulta UPDATE en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
             } catch (SQLException ex) {
@@ -207,12 +208,49 @@ public class ProveedorDAL {
                 statement.setInt(pUtilQuery.getNumWhere(), pProveedor.getIdProveedor()); 
             }
         }
+       if (pProveedor.getCodProveedor() > 0) { // Verificar si se va incluir el campo IdProducto en el filtro de la consulta SELECT de la tabla de Producto
+            pUtilQuery.AgregarWhereAnd(" p.CodProveedor=? "); // Agregar el campo IdProducto al filtro de la consulta SELECT y agregar en el WHERE o AND
+            if (statement != null) { 
+                // Agregar el parametro del campo IdProducto a la consulta SELECT de la tabla de Rol
+                statement.setInt(pUtilQuery.getNumWhere(), pProveedor.getCodProveedor()); 
+            }
+        }
         // Verificar si se va incluir el campo Nombre en el filtro de la consulta SELECT de la tabla de Rol
         if (pProveedor.getNombre() != null && pProveedor.getNombre().trim().isEmpty() == false) {
             pUtilQuery.AgregarWhereAnd(" p.Nombre LIKE ? "); // Agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                 // Agregar el parametro del campo Nombre a la consulta SELECT de la tabla de Producto
                 statement.setString(pUtilQuery.getNumWhere(), "%" + pProveedor.getNombre() + "%"); 
+            }
+        }
+        if (pProveedor.getEmpresa() != null && pProveedor.getEmpresa().trim().isEmpty() == false) {
+            pUtilQuery.AgregarWhereAnd(" p.Empresa LIKE ? "); // Agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
+            if (statement != null) {
+                // Agregar el parametro del campo Nombre a la consulta SELECT de la tabla de Producto
+                statement.setString(pUtilQuery.getNumWhere(), "%" + pProveedor.getEmpresa() + "%"); 
+            }
+        }
+        if (pProveedor.getTelefono() != null && pProveedor.getTelefono().trim().isEmpty() == false) {
+            pUtilQuery.AgregarWhereAnd(" p.Telefono LIKE ? "); // Agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
+            if (statement != null) {
+                // Agregar el parametro del campo Nombre a la consulta SELECT de la tabla de Producto
+                statement.setString(pUtilQuery.getNumWhere(), "%" + pProveedor.getTelefono() + "%"); 
+            }
+        }
+        
+         if (pProveedor.getDireccion() != null && pProveedor.getDireccion().trim().isEmpty() == false) {
+            pUtilQuery.AgregarWhereAnd(" p.Direccion LIKE ? "); // Agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
+            if (statement != null) {
+                // Agregar el parametro del campo Nombre a la consulta SELECT de la tabla de Producto
+                statement.setString(pUtilQuery.getNumWhere(), "%" + pProveedor.getDireccion() + "%"); 
+            }
+        }
+        
+         if (pProveedor.getDescripcion() != null && pProveedor.getDescripcion().trim().isEmpty() == false) {
+            pUtilQuery.AgregarWhereAnd(" p.Direccion LIKE ? "); // Agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
+            if (statement != null) {
+                // Agregar el parametro del campo Nombre a la consulta SELECT de la tabla de Producto
+                statement.setString(pUtilQuery.getNumWhere(), "%" + pProveedor.getDescripcion() + "%"); 
             }
         }
     }

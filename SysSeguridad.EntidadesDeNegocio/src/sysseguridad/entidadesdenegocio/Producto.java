@@ -14,7 +14,7 @@ public class Producto {
     private int IdProducto;
     private String Nombre;
     private String Descripcion;
-    private float precio;
+    private float Precio;
     private float Existencia;
     private int top_aux;
     private ArrayList<Categoria> Categoria;
@@ -23,11 +23,11 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int IdProducto, String Nombre, String Descripcion, float precio, float Existencia, int top_aux, ArrayList<Categoria> Categoria, ArrayList<Proveedor> Proveedor) {
+    public Producto(int IdProducto, String Nombre, String Descripcion, float Precio, float Existencia, int top_aux, ArrayList<Categoria> Categoria, ArrayList<Proveedor> Proveedor) {
         this.IdProducto = IdProducto;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
-        this.precio = precio;
+        this.Precio = Precio;
         this.Existencia = Existencia;
         this.top_aux = top_aux;
         this.Categoria = Categoria;
@@ -59,11 +59,11 @@ public class Producto {
     }
 
     public float getPrecio() {
-        return precio;
+        return Precio;
     }
 
     public void setPrecio(float precio) {
-        this.precio = precio;
+        this.Precio = precio;
     }
 
     public float getExistencia() {
