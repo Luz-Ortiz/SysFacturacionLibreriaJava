@@ -120,9 +120,9 @@ public class ProductoDaL {  // Clase para poder realizar consulta de Insertar, m
         pIndex++;
         pProducto.setExistencia(pResultSet.getFloat(pIndex)); // index 5
         pIndex++;
-        pProducto.setIdProveedor(pResultSet.getFloat(pIndex)); // index 4
+        pProducto.setIdProveedor(pResultSet.getInt(pIndex)); // index 4
         pIndex++;
-        pProducto.setIdCategoria(pResultSet.getFloat(pIndex)); // index 5
+        pProducto.setIdCategoria(pResultSet.getInt(pIndex)); // index 5
         return pIndex;
     }
         // Metodo para  ejecutar el ResultSet de la consulta SELECT a la tabla de Producto

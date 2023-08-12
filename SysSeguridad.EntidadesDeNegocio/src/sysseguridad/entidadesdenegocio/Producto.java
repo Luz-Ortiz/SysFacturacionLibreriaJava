@@ -12,26 +12,29 @@ import java.util.ArrayList;
 public class Producto {
     
     private int IdProducto;
+    private int IdCategoria;
+    private int IdProveedor;
     private String Nombre;
     private String Descripcion;
     private float Precio;
     private float Existencia;
     private int top_aux;
-    private ArrayList<Categoria> Categoria;
-    private ArrayList<Proveedor> Proveedor;
-
+    private Categoria categoria;
+    private Proveedor proveedor;
+    
     public Producto() {
     }
 
-    public Producto(int IdProducto, String Nombre, String Descripcion, float Precio, float Existencia, int top_aux, ArrayList<Categoria> Categoria, ArrayList<Proveedor> Proveedor) {
+    public Producto(int IdProducto, int IdCategoria, int IdProveedor, String Nombre, String Descripcion, float Precio, float Existencia, Categoria categoria, Proveedor proveedor) {
         this.IdProducto = IdProducto;
+        this.IdCategoria = IdCategoria;
+        this.IdProveedor = IdProveedor;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
         this.Precio = Precio;
         this.Existencia = Existencia;
-        this.top_aux = top_aux;
-        this.Categoria = Categoria;
-        this.Proveedor = Proveedor;
+        this.categoria = categoria;
+        this.proveedor = proveedor;
     }
 
     public int getIdProducto() {
@@ -40,6 +43,22 @@ public class Producto {
 
     public void setIdProducto(int IdProducto) {
         this.IdProducto = IdProducto;
+    }
+
+    public int getIdCategoria() {
+        return IdCategoria;
+    }
+
+    public void setIdCategoria(int IdCategoria) {
+        this.IdCategoria = IdCategoria;
+    }
+
+    public int getIdProveedor() {
+        return IdProveedor;
+    }
+
+    public void setIdProveedor(int IdProveedor) {
+        this.IdProveedor = IdProveedor;
     }
 
     public String getNombre() {
@@ -62,8 +81,8 @@ public class Producto {
         return Precio;
     }
 
-    public void setPrecio(float precio) {
-        this.Precio = precio;
+    public void setPrecio(float Precio) {
+        this.Precio = Precio;
     }
 
     public float getExistencia() {
@@ -82,21 +101,23 @@ public class Producto {
         this.top_aux = top_aux;
     }
 
-    public ArrayList<Categoria> getCategoria() {
-        return Categoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setCategoria(ArrayList<Categoria> Categoria) {
-        this.Categoria = Categoria;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
-    public ArrayList<Proveedor> getProveedor() {
-        return Proveedor;
+    public Proveedor getProveedor() {
+        return proveedor;
     }
 
-    public void setProveedor(ArrayList<Proveedor> Proveedor) {
-        this.Proveedor = Proveedor;
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
+
+    
 
     
 }

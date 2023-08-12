@@ -13,18 +13,17 @@ public class Categoria
       public int IdCategoria;
       public String Nombre;
       public String Descripcion;
-      public String Imagen;
+    
       public int top_aux;
       private ArrayList<Producto> producto;
 
     public Categoria() {
     }
 
-    public Categoria(int IdCategoria, String Nombre, String Descripcion, String Imagen, int top_aux, ArrayList<Producto> producto) {
+    public Categoria(int IdCategoria, String Nombre, String Descripcion, int top_aux, ArrayList<Producto> producto) {
         this.IdCategoria = IdCategoria;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
-        this.Imagen = Imagen;
         this.top_aux = top_aux;
         this.producto = producto;
     }
@@ -51,14 +50,6 @@ public class Categoria
 
     public void setDescripcion(String Descripcion) {
         this.Descripcion = Descripcion;
-    }
-
-    public String getImagen() {
-        return Imagen;
-    }
-
-    public void setImagen(String Imagen) {
-        this.Imagen = Imagen;
     }
 
     public int getTop_aux() {
