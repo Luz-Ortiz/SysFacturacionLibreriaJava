@@ -16,7 +16,7 @@ import sysseguridad.entidadesdenegocio.Proveedor;// Importar la clase Rol de la 
 import sysseguridad.appweb.utils.*;// Importar las clases SessionUser, Utilidad del paquete de utils
 /**
  *
- * @author MINEDUCYT
+ * @author Luz
  */
 
 /**
