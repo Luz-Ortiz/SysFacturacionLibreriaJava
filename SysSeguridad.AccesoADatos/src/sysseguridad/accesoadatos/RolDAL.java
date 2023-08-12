@@ -119,7 +119,7 @@ public class RolDAL { // Clase para poder realizar consulta de Insertar, modific
         }
     }
     
-   // Metodo para obtener por Id un registro de la tabla de Rol 
+    // Metodo para obtener por Id un registro de la tabla de Rol 
     public static Rol obtenerPorId(Rol pRol) throws Exception {
         Rol rol = new Rol();
         ArrayList<Rol> roles = new ArrayList();
@@ -138,7 +138,7 @@ public class RolDAL { // Clase para poder realizar consulta de Insertar, modific
         catch (SQLException ex) {
             throw ex; // Enviar al siguiente metodo el error al obtener la conexion  de la clase ComunDB en el caso que suceda
         }
-        if (!roles.isEmpty()) { // Verificar si el ArrayList de Rol trae mas de un registro en tal caso solo debe de traer uno
+        if (roles.size() > 0) { // Verificar si el ArrayList de Rol trae mas de un registro en tal caso solo debe de traer uno
             rol = roles.get(0); // Si el ArrayList de Rol trae un registro o mas obtenemos solo el primero 
         }
         return rol; // Devolver el rol encontrado por Id 
@@ -213,5 +213,4 @@ public class RolDAL { // Clase para poder realizar consulta de Insertar, modific
         }
         return roles; // Devolver el ArrayList de Rol
     }
-    
 }
