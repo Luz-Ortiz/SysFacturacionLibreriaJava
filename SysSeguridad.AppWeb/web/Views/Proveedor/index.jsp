@@ -29,7 +29,7 @@
     <main class="container">
         <h5>Buscar Proveedor</h5>
         <form action="Proveedor" method="post">
-            <input type="hidden" name="accion" value="search">
+            <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">
             <div class="row">
                 <div class="input-field col l6 s12">
                     <input id="txtNombre" type="text" name="nombre">
@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col l12 s12">
                     <button type="submit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
-                    <a href="Proveedor?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a>
+                    <a href="Rol?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a>
                 </div>
             </div>
         </form>
@@ -55,10 +55,11 @@
                     <table class="paginationjs">
                         <thead>
                             <tr>
-                                <th>CodProveedor</th>
                                 <th>Nombre</th>
                                 <th>Empresa</th>
                                 <th>Teléfono</th>
+                                <th>Descripción</th>
+                                <th>Dirección</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -72,17 +73,18 @@
                                     }
                             %>
                             <tr data-page="<%= tempNumPage%>">
-                                <td><%=proveedor.getCodProveedor()%></td>
                                 <td><%=proveedor.getNombre()%></td>
                                 <td><%=proveedor.getEmpresa()%></td>
                                 <td><%=proveedor.getTelefono()%></td>
+                                <td><%=proveedor.getDescripcion()%></td>
+                                <td><%=proveedor.getDireccion()%></td>
                                 <td>
                                     <div style="display:flex">
+                                        <a href="Proveedor?accion=edit&idproveedor=<%=proveedor.getIdProveedor()%>" title="Modificar" class="waves-effect waves-light btn green">
+                                            <i class="material-icons">edit</i>
+                                        </a>
                                         <a href="Proveedor?accion=details&idproveedor=<%=proveedor.getIdProveedor()%>" title="Ver" class="waves-effect waves-light btn blue">
                                             <i class="material-icons">description</i>
-                                        </a>
-                                        <a href="Proveedor?accion=edit&idproveedor=<%=proveedor.getIdProveedor()%>" title="Editar" class="waves-effect waves-light btn green">
-                                            <i class="material-icons">edit</i>
                                         </a>
                                         <a href="Proveedor?accion=delete&idproveedor=<%=proveedor.getIdProveedor()%>" title="Eliminar" class="waves-effect waves-light btn red">
                                             <i class="material-icons">delete</i>
