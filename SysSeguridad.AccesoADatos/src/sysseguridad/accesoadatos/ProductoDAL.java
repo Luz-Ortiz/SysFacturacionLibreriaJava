@@ -5,8 +5,6 @@ import java.util.*; // Utilizar la utileria de java https://docs.oracle.com/java
 import java.sql.*;
 import sysseguridad.entidadesdenegocio.*; // Agregar la referencia al proyecto de entidades de negocio y poder utilizar las entidades de Rol y Usuario
 import java.math.BigDecimal;
-import static sysseguridad.accesoadatos.UsuarioDAL.obtenerCampos;
-import static sysseguridad.accesoadatos.UsuarioDAL.querySelect;
 
 public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, modificar, eliminar, obtener datos de la tabla Producto
     
