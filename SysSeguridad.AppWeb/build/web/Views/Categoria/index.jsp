@@ -32,8 +32,10 @@
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>"> 
                 <div class="row">
                     <div class="input-field col l6 s12">
-                        <input  id="txtNombre" type="text" name="nombre">
+                        <input  idcategoria="txtNombre" type="text" name="nombre">
                         <label for="txtNombre">Nombre</label>
+                         <input  idcategoria="txtDescripcion" type="text" name="descripcion">
+                        <label for="txtDescripcion">Descripcion</label>
                     </div>                    
                     <div class="input-field col l3 s12">   
                         <jsp:include page="/Views/Shared/selectTop.jsp">
@@ -44,7 +46,7 @@
                 <div class="row">
                     <div class="col l12 s12">
                         <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
-                        <a href="Rol?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a>                          
+                        <a href="Categoria?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a>                          
                     </div>
                 </div>
             </form>
@@ -70,7 +72,8 @@
                                         }
                                 %>
                                 <tr data-page="<%= tempNumPage%>">
-                                    <td><%=categoria.getNombre()%></td>                                       
+                                    <td><%=categoria.getNombre()%></td>       
+                                    <td><%=categoria.getDescripcion()%></td>   
                                     <td>
                                         <div style="display:flex">
                                             <a href="Categoria?accion=edit&idcategoria=<%=categoria.getIdCategoria()%>" title="Modificar" class="waves-effect waves-light btn green">

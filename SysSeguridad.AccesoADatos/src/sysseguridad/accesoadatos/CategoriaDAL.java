@@ -12,12 +12,12 @@ public class CategoriaDAL { // Clase para poder realizar consulta de Insertar, m
     }
 
     // Metodo para obtener el SELECT a la tabla Rol y el TOP en el caso que se utilice una base de datos SQL SERVER
-    private static String obtenerSelect(Rol pRol) {
+    private static String obtenerSelect(Categoria pCategoria) {
         String sql;
         sql = "SELECT ";
-        if (pRol.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER) {
+        if (pCategoria.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER) {
             // Agregar el TOP a la consulta SELECT si el gestor de base de datos es SQL SERVER y "getTop_aux" es mayor a cero
-            sql += "TOP " + pRol.getTop_aux() + " ";
+            sql += "TOP " + pCategoria.getTop_aux() + " ";
         }
         sql += (obtenerCampos() + " FROM Categoria c"); // Agregar los campos de la tabla de Rol mas el FROM a la tabla Rol con su alias "r"
         return sql;
@@ -153,7 +153,7 @@ public class CategoriaDAL { // Clase para poder realizar consulta de Insertar, m
         ArrayList<Categoria> categorias;
         categorias = new ArrayList<>();
         try (Connection conn = ComunDB.obtenerConexion();) {// Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-            String sql = obtenerSelect(new Rol());  // Obtener la consulta SELECT de la tabla Rol
+            String sql = obtenerSelect(new Categoria());  // Obtener la consulta SELECT de la tabla Rol
             sql += agregarOrderBy(new Categoria());  // Concatenar a la consulta SELECT de la tabla Rol el ORDER BY por Id 
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 obtenerDatos(ps, categorias); // Llenar el ArrayList de Rol con las fila que devolvera la consulta SELECT a la tabla de Rol
@@ -225,8 +225,6 @@ public class CategoriaDAL { // Clase para poder realizar consulta de Insertar, m
         return categorias; // Devolver el ArrayList de Rol
     }
 
-    private static String obtenerSelect(Categoria pCategoria) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
     
 }
