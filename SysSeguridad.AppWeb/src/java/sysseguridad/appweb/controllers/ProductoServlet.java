@@ -8,9 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;  // Importar la clase ArrayList
-import sysseguridad.accesoadatos.ProductoDaL; // Importar la clase ProductoDAL de la capa de acceso a datos
+import sysseguridad.accesoadatos.ProductoDAL; // Importar la clase ProductoDAL de la capa de acceso a datos
+import sysseguridad.accesoadatos.ProveedorDAL;
 import sysseguridad.entidadesdenegocio.Producto;// Importar la clase Producto de la capa de entidades de negocio
 import sysseguridad.appweb.utils.*;// Importar las clases SessionUser, Utilidad del paquete de utils
+import sysseguridad.entidadesdenegocio.Proveedor;
+import sysseguridad.entidadesdenegocio.Categoria;
+
 
 /**
  * En este Servlet, vamos a recibir todas las peticiones get y post que se
@@ -39,12 +43,20 @@ public class ProductoServlet extends HttpServlet {
         // Obtener el parámetro accion del request
         String accion = Utilidad.getParameter(request, "accion", "index");
         Producto Producto = new Producto();
+        
         if (accion.equals("create") == false) { // Si la accion no es create.
             // Obtener el parámetro idProducto del request  y asignar ese valor a la propiedad Id de Producto.
-            Producto.setIdProducto(Integer.parseInt(Utilidad.getParameter(request, "idProducto", "0")));
+            Producto.setIdProducto(Integer.parseInt(Utilidad.getParameter(request, "IdProducto", "0")));
         }
+         Producto.setIdProveedor(Integer.parseInt(Utilidad.getParameter(request, "IdProveedor", "0")));
+         Producto.setIdCategoria(Integer.parseInt(Utilidad.getParameter(request, "IdCategoria", "0")));
         // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Producto.
-        Producto.setNombre(Utilidad.getParameter(request, "nombre", ""));
+        Producto.setNombre(Utilidad.getParameter(request, "Nombre", ""));
+        Producto.setDescripcion(Utilidad.getParameter(request, "Descrpcion", ""));
+        //Producto.setPrecio(Utilidad.perseBigDecimal(request, "Precio", ""));
+        //Producto.setPrecio(Integer.parseBigDecimal(Utilidad.getParameter(request, "Precio", "10")));
+        
+        Producto.setExistencia(Integer.parseInt(Utilidad.getParameter(request, "Existencia", "10")));
         if (accion.equals("index")) {  // Si accion es index.
             // Obtener el parámetro top_aux del request  y asignar ese valor a la propiedad Top_aux de Producto.
             Producto.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
@@ -73,7 +85,7 @@ public class ProductoServlet extends HttpServlet {
         try {
             Producto Producto = new Producto(); // Crear una instancia  de la entidad de Rol.
             Producto.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de Producto.
-            ArrayList<Producto> Producto = ProductoDAL.buscar(Producto); // Ir a la capa de acceso a datos y buscar los registros de .
+            ArrayList<Producto> producto = ProductoDAL.buscarIncluirProveedor(Producto); // Ir a la capa de acceso a datos y buscar los registros de .
             // El request.setAttribute se utiliza para enviar datos desde un servlet a un jsp.
             request.setAttribute("Producto", Producto); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles.
             // Enviar el Top_aux de Rol al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
@@ -98,12 +110,12 @@ public class ProductoServlet extends HttpServlet {
      */
     private void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-             Producto = obtenerProducto(request); // Llenar la instancia de Rol con los parámetros enviados en el request 
-            ArrayList<Producto> Producto = ProductoDAL.buscar(Producto); // Buscar los roles que cumple con los datos enviados en el request
-            request.setAttribute("roles", Producto); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles
+             Producto producto = obtenerProducto(request); // Llenar la instancia de Rol con los parámetros enviados en el request 
+            ArrayList<Producto> Producto = ProductoDAL.buscar(producto); // Buscar los roles que cumple con los datos enviados en el request
+            request.setAttribute("Producto", Producto); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles
             // Enviar el Top_aux de Rol al jsp utilizando el request.setAttribute con el nombre del atributo top_aux
-            request.setAttribute("top_aux", Producto.getTop_aux());
-            request.getRequestDispatcher("Views/Rol/index.jsp").forward(request, response); // Direccionar al jsp index de Rol
+            request.setAttribute("top_aux", producto.getTop_aux());
+            request.getRequestDispatcher("Views/Producto/index.jsp").forward(request, response); // Direccionar al jsp index de Rol
         } catch (Exception ex) {
             // Enviar al jsp de error si hay un Exception 
             Utilidad.enviarError(ex.getMessage(), request, response);
@@ -122,12 +134,12 @@ public class ProductoServlet extends HttpServlet {
      */
     private void doGetRequestCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // direccionar al jsp create de Rol
-        request.getRequestDispatcher("Views/Rol/create.jsp").forward(request, response);
+        request.getRequestDispatcher("Views/Producto/create.jsp").forward(request, response);
     }
 
     /**
      * En este método se ejecutara cuando se envie una peticion post al servlet
-     * Rol , y el parámetro accion sea igual create.
+     * Producto , y el parámetro accion sea igual create.
      *
      * @param request en este parámetro vamos a recibir el request de la
      * peticion post enviada al servlet Rol
@@ -137,9 +149,9 @@ public class ProductoServlet extends HttpServlet {
      */
     private void doPostRequestCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
+            Producto producto = obtenerProducto(request); // Llenar la instancia de Producto con los parámetros enviados en el request.
             // Enviar los datos de Rol a la capa de accesoa a datos para que lo almacene en la base de datos el registro.
-            int result = RolDAL.crear(rol);
+            int result = ProductoDAL.crear(producto);
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron ingresados correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index
                 request.setAttribute("accion", "index");
@@ -165,44 +177,42 @@ public class ProductoServlet extends HttpServlet {
      * @throws javax.servlet.ServletException
      * @throws java.io.IOException
      */
-    private void requestObtenerPorId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void requestObtenerPorIdProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
-            // Obtener desde la capa de acceso a datos el rol por Id.
-            Rol rol_result = RolDAL.obtenerPorId(rol);
-            if (rol_result.getId() > 0) { // Si el Id es mayor a cero.
-                // Enviar el atributo rol con el valor de los datos del rol de nuestra base de datos a un jsp
-                request.setAttribute("rol", rol_result);
+            Producto producto = obtenerProducto(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
+            Producto producto_result = ProductoDAL.obtenerPorIdProducto(producto); // Obtener desde la capa de acceso a datos el usuario por Id.
+            if (producto_result.getIdProducto() > 0) { // Si el Id es mayor a cero.
+               // Enviar el atributo rol con el valor de los datos del rol de nuestra base de datos a un jsp
+                request.setAttribute("Producto", producto_result);
             } else {
                 // Enviar al jsp de error el siguiente mensaje. El Id: ? no existe en la tabla de Rol
-                Utilidad.enviarError("El Id:" + rol.getId() + " no existe en la tabla de Rol", request, response);
+                Utilidad.enviarError("El IdProducto:" + producto.getIdProducto() + " no existe en la tabla de Producto", request, response);
             }
         } catch (Exception ex) {
             // enviar al jsp de error si hay un Exception
             Utilidad.enviarError(ex.getMessage(), request, response);
         }
     }
-
     /**
      * En este método se ejecutara cuando se envie una peticion get al servlet
      * Rol , y el parámetro accion sea igual edit.
      *
      * @param request en este parámetro vamos a recibir el request de la
-     * peticion get enviada al servlet Rol
+     * peticion get enviada al servlet Producto
      * @param response
      * @throws javax.servlet.ServletException
      * @throws java.io.IOException
      */
     private void doGetRequestEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Enviar el rol al jsp de edit que se obtiene por Id
-        requestObtenerPorId(request, response);
-        // Direccionar al jsp edit de Rol
-        request.getRequestDispatcher("Views/Rol/edit.jsp").forward(request, response);
+        // Enviar el rol al jsp de edit que se obtiene por IdProducto
+        requestObtenerPorIdProducto(request, response);
+        // Direccionar al jsp edit de Producto
+        request.getRequestDispatcher("Views/Producto/edit.jsp").forward(request, response);
     }
 
     /**
      * En este método se ejecutara cuando se envie una peticion post al servlet
-     * Rol , y el parámetro accion sea igual edit.
+     * Producto , y el parámetro accion sea igual edit.
      *
      * @param request en este parámetro vamos a recibir el request de la
      * peticion post enviada al servlet Rol
@@ -212,9 +222,9 @@ public class ProductoServlet extends HttpServlet {
      */
     private void doPostRequestEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
-            // Enviar los datos de Rol a la capa de accesoa a datos para modificar el registro.
-            int result = RolDAL.modificar(rol);
+            Producto producto = obtenerProducto(request); // Llenar la instancia de Producto con los parámetros enviados en el request.
+            // Enviar los datos de Producto a la capa de accesoa a datos para modificar el registro.
+            int result = ProductoDAL.modificar(producto);
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron modificado correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
                 request.setAttribute("accion", "index");
@@ -240,10 +250,10 @@ public class ProductoServlet extends HttpServlet {
      * @throws java.io.IOException
      */
     private void doGetRequestDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Enviar el rol al jsp de details que se obtiene por Id.
-        requestObtenerPorId(request, response);
-        // Direccionar al jsp details de Rol.
-        request.getRequestDispatcher("Views/Rol/details.jsp").forward(request, response);
+        // Enviar el rol al jsp de details que se obtiene por IdProducto.
+        requestObtenerPorIdProducto(request, response);
+        // Direccionar al jsp details de Producto.
+        request.getRequestDispatcher("Views/Producto/details.jsp").forward(request, response);
     }
 
     /**
@@ -258,9 +268,9 @@ public class ProductoServlet extends HttpServlet {
      */
     private void doGetRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Enviar el rol al jsp de delete que se obtiene por Id.
-        requestObtenerPorId(request, response);
+        requestObtenerPorIdProducto(request, response);
         // Direccionar al jsp delete de Rol.
-        request.getRequestDispatcher("Views/Rol/delete.jsp").forward(request, response);
+        request.getRequestDispatcher("Views/Producto/delete.jsp").forward(request, response);
     }
 
     /**
@@ -275,9 +285,9 @@ public class ProductoServlet extends HttpServlet {
      */
     private void doPostRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
+            Producto producto = obtenerProducto(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
             // Enviar los datos de Rol a la capa de accesoa a datos para que elimine el registro.
-            int result = RolDAL.eliminar(rol);
+            int result = ProductoDAL.eliminar(producto);
             if (result != 0) {// Si el result es diferente a cero significa que los datos fueron eliminados correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
                 request.setAttribute("accion", "index");

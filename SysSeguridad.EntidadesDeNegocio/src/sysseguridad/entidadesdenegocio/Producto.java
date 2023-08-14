@@ -4,11 +4,9 @@
  */
 package sysseguridad.entidadesdenegocio;
 
-import java.util.ArrayList;
-/**
- *
- * @author MINEDUCYT
- */
+import java.math.BigDecimal;
+
+
 public class Producto {
     
     private int IdProducto;
@@ -16,16 +14,16 @@ public class Producto {
     private int IdProveedor;
     private String Nombre;
     private String Descripcion;
-    private float Precio;
-    private float Existencia;
+    private BigDecimal Precio;
+    private int Existencia;
     private int top_aux;
-    private Categoria categoria;
-    private Proveedor proveedor;
-    
+    private Categoria Categoria;
+    private Proveedor Proveedor;
+
     public Producto() {
     }
 
-    public Producto(int IdProducto, int IdCategoria, int IdProveedor, String Nombre, String Descripcion, float Precio, float Existencia, Categoria categoria, Proveedor proveedor) {
+    public Producto(int IdProducto, int IdCategoria, int IdProveedor, String Nombre, String Descripcion, BigDecimal Precio, int Existencia) {
         this.IdProducto = IdProducto;
         this.IdCategoria = IdCategoria;
         this.IdProveedor = IdProveedor;
@@ -33,8 +31,6 @@ public class Producto {
         this.Descripcion = Descripcion;
         this.Precio = Precio;
         this.Existencia = Existencia;
-        this.categoria = categoria;
-        this.proveedor = proveedor;
     }
 
     public int getIdProducto() {
@@ -77,19 +73,19 @@ public class Producto {
         this.Descripcion = Descripcion;
     }
 
-    public float getPrecio() {
+    public BigDecimal getPrecio() {
         return Precio;
     }
 
-    public void setPrecio(float Precio) {
-        this.Precio = Precio;
+    public void setPrecio(BigDecimal precio) {
+        this.Precio = precio;
     }
 
-    public float getExistencia() {
+    public int getExistencia() {
         return Existencia;
     }
 
-    public void setExistencia(float Existencia) {
+    public void setExistencia(int Existencia) {
         this.Existencia = Existencia;
     }
 
@@ -102,22 +98,19 @@ public class Producto {
     }
 
     public Categoria getCategoria() {
-        return categoria;
+        return Categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setCategoria(Categoria Categoria) {
+        this.Categoria = Categoria;
     }
 
     public Proveedor getProveedor() {
-        return proveedor;
+        return Proveedor;
     }
 
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
+    public void setProveedor(Proveedor Proveedor) {
+        this.Proveedor = Proveedor;
     }
 
-    
-
-    
 }
