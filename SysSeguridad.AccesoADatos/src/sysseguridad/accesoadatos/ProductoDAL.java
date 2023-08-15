@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.*; // Utilizar la utileria de java https://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html
 import java.sql.*;
 import sysseguridad.entidadesdenegocio.*; // Agregar la referencia al proyecto de entidades de negocio y poder utilizar las entidades de Rol y Usuario
-import java.math.BigDecimal;
+
 
 public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, modificar, eliminar, obtener datos de la tabla Producto
     
@@ -45,7 +45,7 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
                 ps.setInt(2, pProducto.getIdCategoria());
                 ps.setString(3, pProducto.getNombre()); 
                 ps.setString(4, pProducto.getDescripcion());
-                ps.setBigDecimal(5, pProducto.getPrecio());
+                ps.setFloat(5, pProducto.getPrecio());
                 ps.setInt(6, pProducto.getExistencia());
                 result = ps.executeUpdate(); // Ejecutar la consulta INSERT en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
@@ -70,7 +70,7 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
                 ps.setInt(2, pProducto.getIdCategoria());
                 ps.setString(3, pProducto.getNombre()); 
                 ps.setString(4, pProducto.getDescripcion());
-                ps.setBigDecimal(5, pProducto.getPrecio());
+                ps.setFloat(5, pProducto.getPrecio());
                 ps.setInt(6, pProducto.getExistencia());
                 result = ps.executeUpdate(); // Ejecutar la consulta UPDATE en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
@@ -119,7 +119,7 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
         pIndex++;
         pProducto.setDescripcion(pResultSet.getString(pIndex)); // index 5
         pIndex++;
-        pProducto.setPrecio(pResultSet.getBigDecimal(pIndex)); // index 6
+        pProducto.setPrecio(pResultSet.getFloat(pIndex)); // index 6
         pIndex++;
         pProducto.setExistencia(pResultSet.getInt(pIndex)); // index 7
         return pIndex;
@@ -259,7 +259,7 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
             pUtilQuery.AgregarWhereAnd(" p.Precio = ? "); // Agregar el campo Precio al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
             // Agregar el parametro del campo Precio a la consulta SELECT de la tabla de Producto
-            statement.setBigDecimal(pUtilQuery.getNumWhere(), pProducto.getPrecio());
+            statement.setFloat(pUtilQuery.getNumWhere(), pProducto.getPrecio());
            }
           }  
             if (pProducto.getExistencia() > 0) {

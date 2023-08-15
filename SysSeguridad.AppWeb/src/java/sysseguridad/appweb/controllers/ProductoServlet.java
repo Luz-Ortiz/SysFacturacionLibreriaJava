@@ -87,13 +87,13 @@ public class ProductoServlet extends HttpServlet {
             Producto.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de Producto.
             ArrayList<Producto> producto = ProductoDAL.buscarIncluirProveedor(Producto); // Ir a la capa de acceso a datos y buscar los registros de .
             // El request.setAttribute se utiliza para enviar datos desde un servlet a un jsp.
-<<<<<<< HEAD
+
             request.setAttribute("Producto", producto); // Enviar los Producto al jsp utilizando el request.setAttribute con el nombre del atributo roles.
             // Enviar el Top_aux de Producto al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
-=======
+
             request.setAttribute("Producto", Producto); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles.
             // Enviar el Top_aux de Rol al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
->>>>>>> dbfce1d1c9cf8ecaad37647417a27e1f7f6c6fef
+
             request.setAttribute("top_aux", Producto.getTop_aux());
             // El request.getRequestDispatcher nos permite direccionar a un jsp desde un servlet.              
             request.getRequestDispatcher("Views/Producto/index.jsp").forward(request, response); // Direccionar al jsp index de Rol.
