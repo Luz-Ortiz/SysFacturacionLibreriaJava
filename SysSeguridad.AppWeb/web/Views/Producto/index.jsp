@@ -36,16 +36,16 @@
                         <label for="txtNombre">Nombre</label>
                     </div>
                     <div class="input-field col l4 s12">
-                        <input  id="txtDescripcion" type="text" name="apellido">
-                        <label for="txtApellido">Descripcion</label>
+                        <input  id="txtDescripcion" type="text" name="Descripcion">
+                        <label for="txtDescrpcion">Descripcion</label>
                     </div> 
                     <div class="input-field col l4 s12">
-                        <input  id="txtPrecio" type="text" name="apellido">
-                        <label for="txtApellido">Precio</label>
+                        <input  id="txtPrecio" type="text" name="Precio">
+                        <label for="txtPrecio">Precio</label>
                     </div> 
                     <div class="input-field col l4 s12">
-                        <input  id="txtExistentecia" type="text" name="apellido">
-                        <label for="txtApellido">Existencia</label>
+                        <input  id="txtExistentecia" type="text" name="Existencia">
+                        <label for="txtExistencia">Existencia</label>
                     </div> 
                     <div class="input-field col l4 s12">   
                         <jsp:include page="/Views/Producto/select.jsp">                           
