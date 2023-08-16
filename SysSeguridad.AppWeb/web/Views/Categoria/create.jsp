@@ -14,13 +14,15 @@
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">                
                 <div class="row">
                     <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" name="nombre" required class="validate" maxlength="30">
+                        <input  id="txtNombre" type="text" name="Nombre" required class="validate" maxlength="30">
                         <label for="txtNombre">Nombre</label>
-                    </div>                      
-                    <div class="input-field col l4 s12">
-                        <input  id="txtDescripcion" type="text" name="descripcion" required class="validate" maxlength="30">
+                    </div>                        
+                </div>
+                <div class="row">
+                  <div class="input-field col l4 s12">
+                        <input  id="txtDescripcion" type="text" name="Descripcion" required class="validate" maxlength="30">
                         <label for="txtDescripcion">Descripción</label>
-                    </div>  
+                 </div>                       
                 </div>
                 <div class="row">
                     <div class="col l12 s12">

@@ -124,7 +124,7 @@ public class CategoriaDAL { // Clase para poder realizar consulta de Insertar, m
     }
     
    // Metodo para obtener por Id un registro de la tabla de Rol 
-    public static Categoria obtenerPorId(Categoria pCategoria) throws Exception {
+   public static Categoria obtenerPorId(Categoria pCategoria) throws Exception {
         Categoria categoria = new Categoria();
         ArrayList<Categoria> categorias = new ArrayList();
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
@@ -142,7 +142,7 @@ public class CategoriaDAL { // Clase para poder realizar consulta de Insertar, m
         catch (SQLException ex) {
             throw ex; // Enviar al siguiente metodo el error al obtener la conexion  de la clase ComunDB en el caso que suceda
         }
-        if (!categorias.isEmpty()) { // Verificar si el ArrayList de Rol trae mas de un registro en tal caso solo debe de traer uno
+        if (categorias.size() > 0) { // Verificar si el ArrayList de Rol trae mas de un registro en tal caso solo debe de traer uno
             categoria = categorias.get(0); // Si el ArrayList de Rol trae un registro o mas obtenemos solo el primero 
         }
         return categoria; // Devolver el rol encontrado por Id 

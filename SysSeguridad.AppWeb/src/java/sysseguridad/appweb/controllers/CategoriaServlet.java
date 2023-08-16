@@ -41,11 +41,11 @@ public class CategoriaServlet extends HttpServlet {
         Categoria categoria = new Categoria();
         if (accion.equals("create") == false) { // Si la accion no es create.
             // Obtener el parámetro id del request  y asignar ese valor a la propiedad Id de Rol.
-            categoria.setIdCategoria(Integer.parseInt(Utilidad.getParameter(request, "idCategoria", "0")));
+            categoria.setIdCategoria(Integer.parseInt(Utilidad.getParameter(request, "IdCategoria", "0")));
         }
         // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Rol.
-        categoria.setNombre(Utilidad.getParameter(request, "nombre", ""));
-        categoria.setDescripcion(Utilidad.getParameter(request, "descripcion", ""));
+        categoria.setNombre(Utilidad.getParameter(request, "Nombre", ""));
+        categoria.setDescripcion(Utilidad.getParameter(request, "Descripcion", ""));
 
         if (accion.equals("index")) {  // Si accion es index.
             // Obtener el parámetro top_aux del request  y asignar ese valor a la propiedad Top_aux de Rol.
@@ -177,14 +177,13 @@ public class CategoriaServlet extends HttpServlet {
                 request.setAttribute("categoria", categoria_result);
             } else {
                 // Enviar al jsp de error el siguiente mensaje. El Id: ? no existe en la tabla de Rol
-                Utilidad.enviarError("El Id:" + categoria.getIdCategoria() + " no existe en la tabla de Rol", request, response);
+                Utilidad.enviarError("El IdCategoria:" + categoria.getIdCategoria() + " no existe en la tabla de Categoria", request, response);
             }
         } catch (Exception ex) {
             // enviar al jsp de error si hay un Exception
             Utilidad.enviarError(ex.getMessage(), request, response);
         }
     }
-
     /**
      * En este método se ejecutara cuando se envie una peticion get al servlet
      * Rol , y el parámetro accion sea igual edit.

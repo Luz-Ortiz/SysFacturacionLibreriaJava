@@ -44,7 +44,7 @@
                 <div class="row">
                     <div class="col l12 s12">
                         <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
-                        <a href="Rol?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a>                          
+                        <a href="Categoria?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a>                          
                     </div>
                 </div>
             </form>
@@ -55,6 +55,7 @@
                         <table class="paginationjs">
                             <thead>
                                 <tr>
+                                    <th>ID</th> 
                                     <th>Nombre</th>  
                                     <th>Descripcion</th>   
                                     <th>Acciones</th>
@@ -70,16 +71,18 @@
                                         }
                                 %>
                                 <tr data-page="<%= tempNumPage%>">
-                                    <td><%=categoria.getNombre()%></td>                                       
+                                    <td><%=categoria.getIdCategoria()%></td> 
+                                    <td><%=categoria.getNombre()%></td>    
+                                    <td><%=categoria.getDescripcion()%></td>  
                                     <td>
                                         <div style="display:flex">
-                                            <a href="Categoria?accion=edit&idcategoria=<%=categoria.getIdCategoria()%>" title="Modificar" class="waves-effect waves-light btn green">
+                                            <a href="Categoria?accion=edit&idCategoria=<%=categoria.getIdCategoria()%>" title="Modificar" class="waves-effect waves-light btn green">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            <a href="Categoria?accion=details&idcategoria=<%=categoria.getIdCategoria()%>" title="Ver" class="waves-effect waves-light btn blue">
+                                            <a href="Categoria?accion=details&IdCategoria=<%=categoria.getIdCategoria()%>" title="Ver" class="waves-effect waves-light btn blue">
                                                 <i class="material-icons">description</i>
                                             </a>
-                                            <a href="Categoria?accion=delete&idcategoria=<%=categoria.getIdCategoria()%>" title="Eliminar" class="waves-effect waves-light btn red">
+                                            <a href="Categoria?accion=delete&IdCategoria=<%=categoria.getIdCategoria()%>" title="Eliminar" class="waves-effect waves-light btn red">
                                                 <i class="material-icons">delete</i>
                                             </a>     
                                         </div>
