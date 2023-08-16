@@ -76,7 +76,7 @@
                                     <td><%=categoria.getDescripcion()%></td>  
                                     <td>
                                         <div style="display:flex">
-                                            <a href="Categoria?accion=edit&idCategoria=<%=categoria.getIdCategoria()%>" title="Modificar" class="waves-effect waves-light btn green">
+                                            <a href="Categoria?accion=edit&IdCategoria=<%=categoria.getIdCategoria()%>" title="Modificar" class="waves-effect waves-light btn green">
                                                 <i class="material-icons">edit</i>
                                             </a>
                                             <a href="Categoria?accion=details&IdCategoria=<%=categoria.getIdCategoria()%>" title="Ver" class="waves-effect waves-light btn blue">
