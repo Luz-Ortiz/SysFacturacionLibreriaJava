@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/MINEDUCYT/Documents/SysFacturacionLibreriaJava/SysSeguridad.AccesoADatos/src/sysseguridad/accesoadatos/ProveedorDAL.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/MINEDUCYT/Documents/GitHub/SysFacturacionLibreriaJava/SysSeguridad.AccesoADatos/src/sysseguridad/accesoadatos/ProductoDAL.java</file>
-            <file>file:/C:/Users/MINEDUCYT/Documents/GitHub/SysFacturacionLibreriaJava/SysSeguridad.AccesoADatos/src/sysseguridad/accesoadatos/UsuarioDAL.java</file>
-=======
-            <file>file:/C:/Users/MINEDUCYT/Documents/SysFacturacionLibreriaJava/SysSeguridad.AccesoADatos/src/sysseguridad/accesoadatos/CategoriaDAL.java</file>
-            <file>file:/C:/Users/MINEDUCYT/Documents/SysFacturacionLibreriaJava/SysSeguridad.AccesoADatos/src/sysseguridad/accesoadatos/RolDAL.java</file>
->>>>>>> ce9df9afe861d85aa51700311781b80a994c17e1
->>>>>>> ef033934ac6d97a8dc33d07c0299b2dbf25235ee
         </group>
     </open-files>
 </project-private>
