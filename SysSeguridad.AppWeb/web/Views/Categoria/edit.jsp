@@ -14,15 +14,15 @@
             <h5>Editar Categoria</h5>
             <form action="Categoria" method="post">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">   
-                <input type="hidden" name="id" value="<%=categoria.getIdCategoria()%>">   
+                <input type="hidden" name="IdCategoria" value="<%=categoria.getIdCategoria()%>">   
                 <div class="row">
                     <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" name="nombre" value="<%=categoria.getNombre()%>" required class="validate" maxlength="30">
+                        <input  IdCategoria="txtNombre" type="text" name="Nombre" value="<%=categoria.getNombre()%>" required class="validate" maxlength="30">
                         <label for="txtNombre">Nombre</label>
                     </div>     
                         
                     <div class="input-field col l4 s12">
-                        <input  id="txtDescripcion" type="text" name="Descripcion" value="<%=categoria.getDescripcion()%>" required class="validate" maxlength="30">
+                        <input  IdCategoria="txtDescripcion" type="text" name="Descripcion" value="<%=categoria.getDescripcion()%>" required class="validate" maxlength="30">
                         <label for="txtNombre">Descripcion</label>
                     </div>    
                 </div>

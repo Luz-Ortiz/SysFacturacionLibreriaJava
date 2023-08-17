@@ -13,21 +13,18 @@
             <h5>Detalle de Categoria</h5>
             <div class="row">
                 <div class="input-field col l4 s12">
-                    <input disabled  id="txtNombre" type="text" value="<%=categoria.getNombre()%>">
+                    <input disabled  IdCategoria="txtNombre" type="text" value="<%=categoria.getNombre()%>">
                     <label for="txtNombre">Nombre</label>
-                </div> 
-                     <div class="input-field col l4 s12">
-                    <input disabled  id="txtDescripcion" type="text" value="<%=categoria.getDescripcion()%>">
-                    <label for="txtNombre">Descripcion</label>
-                </div> 
-                     <div class="input-field col l4 s12">
-                    <input disabled  id="txtTop_aux" type="text" value="<%=categoria.getTop_aux()%>">
-                    <label for="txtNombre">Top_aux</label>
-                </div> 
+                </div>
             </div>
+            <div class="row">        
+                     <div class="input-field col l4 s12">
+                    <input disabled IdCategoria="txtDescripcion" type="text" value="<%=categoria.getDescripcion()%>">
+                    <label for="Descripcion">Descripcion</label>
+            </div> 
             <div class="row">
                 <div class="col l12 s12">
-                    <a href="Categoria?accion=edit&id=<%=categoria.getIdCategoria()%>" class="waves-effect waves-light btn blue"><i class="material-icons right">edit</i>Ir modificar</a>                        
+                    <a href="Categoria?accion=edit&IdCategoria=<%=categoria.getIdCategoria()%>" class="waves-effect waves-light btn blue"><i class="material-icons right">edit</i>Ir modificar</a>                        
                     <a href="Categoria" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
                 </div>
             </div>         
