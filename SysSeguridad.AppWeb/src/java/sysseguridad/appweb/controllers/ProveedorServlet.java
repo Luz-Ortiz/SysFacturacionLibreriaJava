@@ -1,9 +1,11 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package sysseguridad.appweb.controllers;
+
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,22 +16,16 @@ import java.util.ArrayList;  // Importar la clase ArrayList
 import sysseguridad.accesoadatos.ProveedorDAL; // Importar la clase RolDAL de la capa de acceso a datos
 import sysseguridad.entidadesdenegocio.Proveedor;// Importar la clase Rol de la capa de entidades de negocio
 import sysseguridad.appweb.utils.*;// Importar las clases SessionUser, Utilidad del paquete de utils
-/**
- *
- * @author Luz
- */
 
 /**
- * En este Servlet, vamos a recibir todas las peticiones get y post que se
- * realice al Servlet Rol. Aprender conceptos básicos de servlets
- * http://www.jtech.ua.es/j2ee/2002-2003/modulos/servlets/apuntes/apuntes1_1.htm
- * Actualizamos la anotación WebServlet para cambiar el atributo urlPatterns
- * para acceder al Servlet Rol utilizando la siguiente Url: la del sitio web mas
- * /Rol
+ *
+ * @author MINEDUCYT
  */
 @WebServlet(name = "ProveedorServlet", urlPatterns = {"/Proveedor"})
 public class ProveedorServlet extends HttpServlet {
-    
+
+
+
     // <editor-fold defaultstate="collapsed" desc="Metodos para procesar las solicitudes get o post del Servlet">
     /**
      * En este método vamos a obtener la información enviada, en una peticion
@@ -48,10 +44,17 @@ public class ProveedorServlet extends HttpServlet {
         Proveedor proveedor = new Proveedor();
         if (accion.equals("create") == false) { // Si la accion no es create.
             // Obtener el parámetro id del request  y asignar ese valor a la propiedad Id de Rol.
-            proveedor.setIdProveedor(Integer.parseInt(Utilidad.getParameter(request, "id", "0")));
+            proveedor.setIdProveedor(Integer.parseInt(Utilidad.getParameter(request, "IdProveedor", "0")));
         }
         // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Rol.
+        proveedor.setCodigo(Utilidad.getParameter(request, "codigo", ""));
+        // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Rol.
         proveedor.setNombre(Utilidad.getParameter(request, "nombre", ""));
+         // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Rol.
+        proveedor.setTelefono(Utilidad.getParameter(request, "telefono", ""));
+         // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Rol.
+        proveedor.setDireccion(Utilidad.getParameter(request, "direccion", ""));
+        
         if (accion.equals("index")) {  // Si accion es index.
             // Obtener el parámetro top_aux del request  y asignar ese valor a la propiedad Top_aux de Rol.
             proveedor.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
@@ -64,8 +67,9 @@ public class ProveedorServlet extends HttpServlet {
         return proveedor;
     }
 
-     //* En este método se ejecutara cuando se envie una peticion get al servlet
-     /* Rol, y el parámetro accion sea igual index. Este método se encargara de
+    /**
+     * En este método se ejecutara cuando se envie una peticion get al servlet
+     * Rol, y el parámetro accion sea igual index. Este método se encargara de
      * enviar los datos de los roles al jsp de index de Rol.
      *
      * @param request en este parámetro vamos a recibir el request de la
@@ -81,7 +85,7 @@ public class ProveedorServlet extends HttpServlet {
             proveedor.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de rol.
             ArrayList<Proveedor> proveedores = ProveedorDAL.buscar(proveedor); // Ir a la capa de acceso a datos y buscar los registros de Rol.
             // El request.setAttribute se utiliza para enviar datos desde un servlet a un jsp.
-            request.setAttribute("roles", proveedores); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles.
+            request.setAttribute("proveedores", proveedores); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles.
             // Enviar el Top_aux de Rol al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
             request.setAttribute("top_aux", proveedor.getTop_aux());
             // El request.getRequestDispatcher nos permite direccionar a un jsp desde un servlet.              
@@ -90,7 +94,8 @@ public class ProveedorServlet extends HttpServlet {
             Utilidad.enviarError(ex.getMessage(), request, response); // Enviar al jsp de error si hay un Exception.
         }
     }
-/**
+
+    /**
      * En este método se ejecutara cuando se envie una peticion post, al servlet
      * Rol , y el parámetro accion sea igual index. Este método se encargara de
      * enviar los datos de los roles al jsp de index de Rol
@@ -114,7 +119,8 @@ public class ProveedorServlet extends HttpServlet {
             Utilidad.enviarError(ex.getMessage(), request, response);
         }
     }
-/**
+
+    /**
      * En este método se ejecutara cuando se envie una peticion get al servlet
      * Rol, y el parámetro accion sea igual create.
      *
@@ -169,17 +175,17 @@ public class ProveedorServlet extends HttpServlet {
      * @throws javax.servlet.ServletException
      * @throws java.io.IOException
      */
-    private void requestObtenerPorId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void requestObtenerPorIdProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Proveedor proveedor = obtenerProveedor(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
             // Obtener desde la capa de acceso a datos el rol por Id.
-            Proveedor proveedor_result = ProveedorDAL.obtenerPorId(proveedor);
+            Proveedor proveedor_result = ProveedorDAL.obtenerPorIdProveedor(proveedor);
             if (proveedor_result.getIdProveedor() > 0) { // Si el Id es mayor a cero.
                 // Enviar el atributo rol con el valor de los datos del rol de nuestra base de datos a un jsp
                 request.setAttribute("proveedor", proveedor_result);
             } else {
                 // Enviar al jsp de error el siguiente mensaje. El Id: ? no existe en la tabla de Rol
-                Utilidad.enviarError("El Id:" + proveedor.getIdProveedor() + " no existe en la tabla de Proveedor", request, response);
+                Utilidad.enviarError("El IdProveedor:" + proveedor.getIdProveedor() + " no existe en la tabla de Proveedor", request, response);
             }
         } catch (Exception ex) {
             // enviar al jsp de error si hay un Exception
@@ -198,9 +204,9 @@ public class ProveedorServlet extends HttpServlet {
      * @throws java.io.IOException
      */
     private void doGetRequestEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Enviar el rol al jsp de edit que se obtiene por Id
-        requestObtenerPorId(request, response);
-        // Direccionar al jsp edit de Rol
+        // Enviar el  al jsp de edit que se obtiene por IdProveedor
+        requestObtenerPorIdProveedor(request, response);
+        // Direccionar al jsp edit de Proveedor
         request.getRequestDispatcher("Views/Proveedor/edit.jsp").forward(request, response);
     }
 
@@ -245,7 +251,7 @@ public class ProveedorServlet extends HttpServlet {
      */
     private void doGetRequestDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Enviar el rol al jsp de details que se obtiene por Id.
-        requestObtenerPorId(request, response);
+        requestObtenerPorIdProveedor(request, response);
         // Direccionar al jsp details de Rol.
         request.getRequestDispatcher("Views/Proveedor/details.jsp").forward(request, response);
     }
@@ -262,7 +268,7 @@ public class ProveedorServlet extends HttpServlet {
      */
     private void doGetRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Enviar el rol al jsp de delete que se obtiene por Id.
-        requestObtenerPorId(request, response);
+        requestObtenerPorIdProveedor(request, response);
         // Direccionar al jsp delete de Rol.
         request.getRequestDispatcher("Views/Proveedor/delete.jsp").forward(request, response);
     }
@@ -296,23 +302,19 @@ public class ProveedorServlet extends HttpServlet {
         }
     }
 
-    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Este método es un override al método de la clase HttpServlet para recibir
-     * todas las peticiones get que se realice al Servlet Rol
+     * Handles the HTTP <code>GET</code> method.
      *
-     * @param request en este parámetro vamos a recibir el request de la
-     * peticion get enviada al servlet Rol
-     * @param response en este parámetro vamos a recibir el response de la
-     * peticion get enviada al servlet Rol que utlizaremos para enviar el jsp al
-     * navegador web
-     * @throws ServletException devolver una exception de un servlet
-     * @throws IOException devolver una exception al leer o escribir un archivo
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         // Utilizar el método authorize de la clase SessionUser para validar que solo usuario con permiso
         // puedan acceder al servlet de Rol. Todo el codigo que este dentro  expresion Lambda, se ejecutara si el usuario tiene permitido
         // acceder a este Servlet 
@@ -355,16 +357,12 @@ public class ProveedorServlet extends HttpServlet {
     }
 
     /**
-     * Este método es un override al método de la clase HttpServlet para recibir
-     * todas las peticiones post que se realice al Servlet Rol
+     * Handles the HTTP <code>POST</code> method.
      *
-     * @param request en este parámetro vamos a recibir el request de la
-     * peticion post enviada al servlet Rol
-     * @param response en este parámetro vamos a recibir el response de la
-     * peticion get enviada al servlet Rol que utlizaremos para enviar el jsp al
-     * navegador web
-     * @throws ServletException devolver una exception de un servlet
-     * @throws IOException devolver una exception al leer o escribir un archivo
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -405,6 +403,6 @@ public class ProveedorServlet extends HttpServlet {
         });
     }
 
-    // </editor-fold>
-    
+   
+
 }

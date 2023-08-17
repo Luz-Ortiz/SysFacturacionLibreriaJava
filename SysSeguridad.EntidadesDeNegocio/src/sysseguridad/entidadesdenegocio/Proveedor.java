@@ -4,37 +4,29 @@
  */
 package sysseguridad.entidadesdenegocio;
 
-
 import java.util.ArrayList;
-
 /**
  *
  * @author MINEDUCYT
  */
 public class Proveedor {
-    public int IdProveedor;
-    public int CodProveedor;
-    public String Nombre;
-    public String Empresa;
-    public String Telefono; 
-    public String Descripcion;
-    public String Direccion;
+    private int IdProveedor;
+    private String Codigo;
+    private String Nombre;
+    private String Telefono;
+    private String Direccion;
     private int top_aux;
-    private ArrayList<Producto> Producto;
+     private ArrayList<Producto> Producto;
 
     public Proveedor() {
     }
 
-    public Proveedor(int IdProveedor, int CodProveedor, String Nombre, String Empresa, String Telefono, String Descripcion, String Direccion, int top_aux, ArrayList<Producto> Producto) {
+    public Proveedor(int IdProveedor, String Codigo, String Nombre, String Telefono, String Direccion) {
         this.IdProveedor = IdProveedor;
-        this.CodProveedor = CodProveedor;
+        this.Codigo = Codigo;
         this.Nombre = Nombre;
-        this.Empresa = Empresa;
         this.Telefono = Telefono;
-        this.Descripcion = Descripcion;
         this.Direccion = Direccion;
-        this.top_aux = top_aux;
-        this.Producto = Producto;
     }
 
     public int getIdProveedor() {
@@ -45,12 +37,12 @@ public class Proveedor {
         this.IdProveedor = IdProveedor;
     }
 
-    public int getCodProveedor() {
-        return CodProveedor;
+    public String getCodigo() {
+        return Codigo;
     }
 
-    public void setCodProveedor(int CodProveedor) {
-        this.CodProveedor = CodProveedor;
+    public void setCodigo(String Codigo) {
+        this.Codigo = Codigo;
     }
 
     public String getNombre() {
@@ -61,28 +53,12 @@ public class Proveedor {
         this.Nombre = Nombre;
     }
 
-    public String getEmpresa() {
-        return Empresa;
-    }
-
-    public void setEmpresa(String Empresa) {
-        this.Empresa = Empresa;
-    }
-
     public String getTelefono() {
         return Telefono;
     }
 
     public void setTelefono(String Telefono) {
         this.Telefono = Telefono;
-    }
-
-    public String getDescripcion() {
-        return Descripcion;
-    }
-
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
     }
 
     public String getDireccion() {
@@ -109,6 +85,8 @@ public class Proveedor {
         this.Producto = Producto;
     }
 
-   
-   
+    
+     
 }
+
+
