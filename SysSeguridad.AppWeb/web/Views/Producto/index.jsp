@@ -2,14 +2,14 @@
 <%@page import="sysseguridad.entidadesdenegocio.Producto"%>
 <%@page import="sysseguridad.entidadesdenegocio.Proveedor"%>
 <%@page import="java.util.ArrayList"%>
-<% ArrayList<Producto> productos = (ArrayList<Producto>) request.getAttribute("productos");
+<% ArrayList<Producto> producto = (ArrayList<Producto>) request.getAttribute("producto");
     int numPage = 1;
     int numReg = 10;
     int countReg = 0;
-    if (productos== null) {
-        productos = new ArrayList();
-    } else if (productos.size() > numReg) {
-        double divNumPage = (double) productos.size() / (double) numReg;
+    if (producto== null) {
+        producto = new ArrayList();
+    } else if (producto.size() > numReg) {
+        double divNumPage = (double) producto.size() / (double) numReg;
         numPage = (int) Math.ceil(divNumPage);
     }
     String strTop_aux = request.getParameter("top_aux");
@@ -32,7 +32,7 @@
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>"> 
                 <div class="row">
                     <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" name="Nombre">
+                        <input  id="txtNombre" type="text" name="nombre">
                         <label for="txtNombre">Nombre</label>
                     </div>
                     <div class="input-field col l4 s12">
@@ -47,6 +47,11 @@
                         <input  id="txtExistentecia" type="text" name="Existencia">
                         <label for="txtExistencia">Existencia</label>
                     </div> 
+                    <div class="input-field col l4 s12">   
+                        <jsp:include page="/Views/Producto/select.jsp">                           
+                            <jsp:param name="IdProducto" value="0" />  
+                        </jsp:include>                        
+                    </div>
                     <div class="input-field col l4 s12">   
                         <jsp:include page="/Views/Shared/selectTop.jsp">
                             <jsp:param name="top_aux" value="<%=top_aux%>" />                        
@@ -68,19 +73,17 @@
                 <div style="overflow: auto">
                     <table class="paginationjs">
                         <thead>
-                            <tr>   
-                                <th>IdProducto</th>
+                            <tr>                                     
                                 <th>Nombre</th>  
                                 <th>Descripcion</th> 
                                 <th>Precio</th>  
                                 <th>Existencia</th>  
                                 <th>Proveedor</th>   
-                                <th>Categoria</th> 
-                                <th>Acciones</th>
+                                <th>Categoria</th>   
                             </tr>
                         </thead>                       
                     <tbody>
-                <% for (Producto Producto : productos) {
+                <% for (Producto Producto : producto) {
                  int tempNumPage = numPage;
                  if (numPage > 1) {
                  countReg++;
@@ -89,12 +92,11 @@
                  }
                
                  %>
-                       <tr data-page="<%= tempNumPage%>"> 
-                       <td><%=Producto.getIdProducto()%></td> 
+                       <tr data-page="<%= tempNumPage%>">                                    
                        <td><%=Producto.getNombre()%></td>  
                        <td><%=Producto.getDescripcion()%></td>
                        <td><%=Producto.getPrecio()%></td> 
-                       <td><%=Producto.getProveedor()%></td> 
+                       <td><%=Producto.getProveedor().getNombre()%></td> 
                        <td><%=Producto.getCategoria()%></td> 
                        <td>
                     <div style="display:flex">

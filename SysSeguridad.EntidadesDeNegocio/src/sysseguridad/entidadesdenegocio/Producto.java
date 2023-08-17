@@ -13,7 +13,7 @@ public class Producto {
     private int IdProveedor;
     private String Nombre;
     private String Descripcion;
-    private int Precio;
+    private Float Precio;
     private int Existencia;
     private int top_aux;
     private Categoria Categoria;
@@ -22,7 +22,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int IdProducto, int IdCategoria, int IdProveedor, String Nombre, String Descripcion, int Precio, int Existencia) {
+    public Producto(int IdProducto, int IdCategoria, int IdProveedor, String Nombre, String Descripcion, Float Precio, int Existencia) {
         this.IdProducto = IdProducto;
         this.IdCategoria = IdCategoria;
         this.IdProveedor = IdProveedor;
@@ -72,11 +72,11 @@ public class Producto {
         this.Descripcion = Descripcion;
     }
 
-    public int getPrecio() {
+    public Float getPrecio() {
         return Precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(Float precio) {
         this.Precio = precio;
     }
 
