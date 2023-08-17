@@ -2,7 +2,7 @@
 <%@page import="sysseguridad.entidadesdenegocio.Producto"%>
 <%@page import="sysseguridad.entidadesdenegocio.Proveedor"%>
 <%@page import="java.util.ArrayList"%>
-<% ArrayList<Producto> productos = (ArrayList<Producto>) request.getAttribute("producto");
+<% ArrayList<Producto> productos = (ArrayList<Producto>) request.getAttribute("productos");
     int numPage = 1;
     int numReg = 10;
     int countReg = 0;
@@ -94,7 +94,7 @@
                        <td><%=Producto.getNombre()%></td>  
                        <td><%=Producto.getDescripcion()%></td>
                        <td><%=Producto.getPrecio()%></td> 
-                       <td><%=Producto.getProveedor().getNombre()%></td> 
+                       <td><%=Producto.getProveedor()%></td> 
                        <td><%=Producto.getCategoria()%></td> 
                        <td>
                     <div style="display:flex">
