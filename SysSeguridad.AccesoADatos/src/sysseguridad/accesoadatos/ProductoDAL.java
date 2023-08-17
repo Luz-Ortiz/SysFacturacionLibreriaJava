@@ -10,9 +10,9 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
     
     // Metodo para obtener los campos a utilizar en la consulta SELECT de la tabla de Producto
     static String obtenerCampos() {
-    return "p.IdProducto,p.IdCategoria,p.IdProveedor,p.Nombre,p.Descripcion,p.Precio,p.Existencia";
+    return "p.IdProducto, p.IdCategoria, p.IdProveedor, p.Nombre, p.Descripcion, p.Precio, p.Existencia";
  }
-        // Metodo para obtener el SELECT a la tabla Rol y el TOP en el caso que se utilice una base de datos SQL SERVER
+        // Metodo para obtener el SELECT a la tabla Producto y el TOP en el caso que se utilice una base de datos SQL SERVER
     private static String obtenerSelect(Producto pProducto) {
         String sql;
         sql = "SELECT ";
@@ -45,7 +45,7 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
                 ps.setInt(2, pProducto.getIdCategoria());
                 ps.setString(3, pProducto.getNombre()); 
                 ps.setString(4, pProducto.getDescripcion());
-                ps.setFloat(5, pProducto.getPrecio());
+                ps.setInt(5, pProducto.getPrecio());
                 ps.setInt(6, pProducto.getExistencia());
                 result = ps.executeUpdate(); // Ejecutar la consulta INSERT en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
@@ -70,8 +70,9 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
                 ps.setInt(2, pProducto.getIdCategoria());
                 ps.setString(3, pProducto.getNombre()); 
                 ps.setString(4, pProducto.getDescripcion());
-                ps.setFloat(5, pProducto.getPrecio());
+                ps.setInt(5, pProducto.getPrecio());
                 ps.setInt(6, pProducto.getExistencia());
+                ps.setInt(7, pProducto.getIdProducto());
                 result = ps.executeUpdate(); // Ejecutar la consulta UPDATE en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
             } catch (SQLException ex) {
@@ -119,7 +120,7 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
         pIndex++;
         pProducto.setDescripcion(pResultSet.getString(pIndex)); // index 5
         pIndex++;
-        pProducto.setPrecio(pResultSet.getFloat(pIndex)); // index 6
+        pProducto.setPrecio(pResultSet.getInt(pIndex)); // index 6
         pIndex++;
         pProducto.setExistencia(pResultSet.getInt(pIndex)); // index 7
         return pIndex;
@@ -147,7 +148,7 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
                 Producto producto = new Producto();
                  // Llenar las propiedaddes de la Entidad Producto con los datos obtenidos de la fila en el ResultSet
                 int index = asignarDatosResultSet(producto, resultSet, 0);
-                if (ProveedorMap.containsKey(producto.getIdProducto()) == false) { // verificar que el HashMap aun no contenga el Rol actual
+                if (ProveedorMap.containsKey(producto.getIdProveedor()) == false) { // verificar que el HashMap aun no contenga el Rol actual
                     Proveedor proveedor = new Proveedor();
                     // en el caso que el Proveedor no este en el HashMap se asignara
                     ProveedorDAL.asignarDatosResultSet(proveedor, resultSet, index);
@@ -169,7 +170,7 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
     
     
      // Metodo para obtener por IdPoducto un registro de la tabla de Producto
-    public static Producto obtenerPorIdProducto(Producto pProducto) throws Exception {
+    public static Producto obtenerPorId(Producto pProducto) throws Exception {
         Producto producto = new Producto();
         ArrayList<Producto> Producto = new ArrayList();
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
@@ -255,13 +256,13 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
                 statement.setString(pUtilQuery.getNumWhere(), "%" + pProducto.getDescripcion() + "%"); 
             }
         }    
-            if (pProducto.getPrecio() != null) {
-            pUtilQuery.AgregarWhereAnd(" p.Precio = ? "); // Agregar el campo Precio al filtro de la consulta SELECT y agregar en el WHERE o AND
+            if (pProducto.getPrecio() > 0) {
+            pUtilQuery.AgregarWhereAnd(" p.Precio=? "); // agregar el campo IdProveedor al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
-            // Agregar el parametro del campo Precio a la consulta SELECT de la tabla de Producto
-            statement.setFloat(pUtilQuery.getNumWhere(), pProducto.getPrecio());
-           }
-          }  
+                 // agregar el parametro del campo IdProveedor a la consulta SELECT de la tabla de Usuario
+                statement.setInt(pUtilQuery.getNumWhere(), pProducto.getPrecio());
+            }
+        }
             if (pProducto.getExistencia() > 0) {
             pUtilQuery.AgregarWhereAnd(" p.Existencia=? "); // agregar el campo IdProveedor al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
@@ -312,7 +313,7 @@ public class ProductoDAL {  // Clase para poder realizar consulta de Insertar, m
             sql += ",";
             sql += ProveedorDAL.obtenerCampos(); // Obtener los campos de la tabla de Rol que iran en el SELECT
             sql += " FROM Producto p";
-            sql += " JOIN Proveedor p on (p.IdProveedor=p.IdProducto)"; // agregar el join para unir la tabla de Usuario con Rol
+            sql += " JOIN Proveedor pr on (p.IdProveedor=pr.IdProducto)"; // agregar el join para unir la tabla de Usuario con Rol
             ComunDB comundb = new ComunDB();
             ComunDB.UtilQuery utilQuery = comundb.new UtilQuery(sql, null, 0);
             querySelect(pProducto, utilQuery); // Asignar el filtro a la consulta SELECT de la tabla de Usuario 

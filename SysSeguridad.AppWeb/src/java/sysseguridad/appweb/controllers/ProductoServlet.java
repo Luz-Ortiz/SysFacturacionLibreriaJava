@@ -16,6 +16,7 @@ import sysseguridad.entidadesdenegocio.Proveedor;
 import sysseguridad.entidadesdenegocio.Categoria;
 
 
+
 /**
  * En este Servlet, vamos a recibir todas las peticiones get y post que se
  * realice al Servlet Producto. Aprender conceptos básicos de servlets
@@ -43,18 +44,14 @@ public class ProductoServlet extends HttpServlet {
         // Obtener el parámetro accion del request
         String accion = Utilidad.getParameter(request, "accion", "index");
         Producto Producto = new Producto();
-        
-        if (accion.equals("create") == false) { // Si la accion no es create.
-            // Obtener el parámetro idProducto del request  y asignar ese valor a la propiedad Id de Producto.
-            Producto.setIdProducto(Integer.parseInt(Utilidad.getParameter(request, "IdProducto", "0")));
-        }
+ 
          Producto.setIdProveedor(Integer.parseInt(Utilidad.getParameter(request, "IdProveedor", "0")));
          Producto.setIdCategoria(Integer.parseInt(Utilidad.getParameter(request, "IdCategoria", "0")));
         // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Producto.
         Producto.setNombre(Utilidad.getParameter(request, "Nombre", ""));
         Producto.setDescripcion(Utilidad.getParameter(request, "Descrpcion", ""));
-        //Producto.setPrecio(Utilidad.perseBigDecimal(request, "Precio", ""));
-        //Producto.setPrecio(Integer.parseBigDecimal(Utilidad.getParameter(request, "Precio", "10")));
+        //Producto.setPrecio(Utilidad.perseFloat(request, "Precio", ""));
+        Producto.setPrecio(Integer.parseInt(Utilidad.getParameter(request, "Precio", "")));
         
         Producto.setExistencia(Integer.parseInt(Utilidad.getParameter(request, "Existencia", "10")));
         if (accion.equals("index")) {  // Si accion es index.
@@ -90,10 +87,6 @@ public class ProductoServlet extends HttpServlet {
 
             request.setAttribute("Producto", producto); // Enviar los Producto al jsp utilizando el request.setAttribute con el nombre del atributo roles.
             // Enviar el Top_aux de Producto al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
-
-            request.setAttribute("Producto", Producto); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles.
-            // Enviar el Top_aux de Rol al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
-
             request.setAttribute("top_aux", Producto.getTop_aux());
             // El request.getRequestDispatcher nos permite direccionar a un jsp desde un servlet.              
             request.getRequestDispatcher("Views/Producto/index.jsp").forward(request, response); // Direccionar al jsp index de Rol.
@@ -185,10 +178,14 @@ public class ProductoServlet extends HttpServlet {
     private void requestObtenerPorIdProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Producto producto = obtenerProducto(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
-            Producto producto_result = ProductoDAL.obtenerPorIdProducto(producto); // Obtener desde la capa de acceso a datos el usuario por IdProducto.
+            Producto producto_result =ProductoDAL.obtenerPorId(producto); // Obtener desde la capa de acceso a datos el usuario por IdProducto.
             if (producto_result.getIdProducto() > 0) { // Si el Id es mayor a cero.
-               // Enviar el atributo Producto con el valor de los datos del Producto de nuestra base de datos a un jsp
-                request.setAttribute("Producto", producto_result);
+                Proveedor proveedor = new Proveedor();
+                proveedor.setIdProveedor(producto_result.getIdProveedor());
+                // Obtener desde la capa de acceso a datos el Producto por Id y asignarlo al usuario.
+                producto_result.setProveedor(ProveedorDAL.obtenerPorId(proveedor));
+                // Enviar el atributo usuario con el valor de los datos del usuario de nuestra base de datos a un jsp
+                request.setAttribute("producto", producto_result);
             } else {
                 // Enviar al jsp de error el siguiente mensaje. El Id: ? no existe en la tabla de Producto
                 Utilidad.enviarError("El IdProducto:" + producto.getIdProducto() + " no existe en la tabla de Producto", request, response);
