@@ -32,11 +32,15 @@
                         <input id="txtProveedor" type="text" value="<%=producto.getProveedor().getNombre()%>" disabled>
                         <label for="txtProveedor">Proveedor</label>
                     </div> 
+                    <div class="input-field col l4 s12">
+                        <input id="txtCategoria" type="text" value="<%=producto.getCategoria().getNombre()%>" disabled>
+                        <label for="txtCategoria">Categoria</label>
+                    </div> 
                 </div>
 
                 <div class="row">
                     <div class="col l12 s12">
-                         <a href="Producto?accion=edit&id=<%=producto.getIdProducto()%>" class="waves-effect waves-light btn blue"><i class="material-icons right">edit</i>Ir modificar</a>            
+                         <a href="Producto?accion=edit&IdProducto=<%=producto.getIdProducto()%>" class="waves-effect waves-light btn blue"><i class="material-icons right">edit</i>Ir modificar</a>            
                         <a href="Producto" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
                     </div>
                 </div>          

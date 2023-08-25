@@ -104,6 +104,10 @@ public class ProveedorDAL {
     // el metodo nos ayudara a no preocuparlos por los indices al momento de obtener los valores del ResultSet
     static int asignarDatosResultSet(Proveedor pProveedor, ResultSet pResultSet, int pIndex) throws Exception {
         //  SELECT r.Id(indice 1),r.Nombre(indice 2) * FROM Rol
+if (pIndex==7 ) {
+        pIndex++;
+        pIndex++;
+        pIndex++;
         pIndex++;
         pProveedor.setIdProveedor(pResultSet.getInt(pIndex)); // index 1
         pIndex++;
@@ -111,11 +115,32 @@ public class ProveedorDAL {
         pIndex++;
         pProveedor.setNombre(pResultSet.getString(pIndex)); // index 2
         pIndex++;
-         pProveedor.setTelefono(pResultSet.getString(pIndex));
-         pIndex++;
-          pProveedor.setDireccion(pResultSet.getString(pIndex));
-          pIndex++;
+        pProveedor.setTelefono(pResultSet.getString(pIndex));
+        pIndex++;
+        pProveedor.setDireccion(pResultSet.getString(pIndex));
+        pIndex++;
+        pIndex--;
+        pIndex--;
+        pIndex--;
         return pIndex++;
+        } else {
+            pIndex++;
+        pProveedor.setIdProveedor(pResultSet.getInt(pIndex)); // index 1
+        pIndex++;
+        pProveedor.setCodigo(pResultSet.getString(pIndex)); // index 2
+        pIndex++;
+        pProveedor.setNombre(pResultSet.getString(pIndex)); // index 2
+        pIndex++;
+        pProveedor.setTelefono(pResultSet.getString(pIndex));
+        pIndex++;
+        pProveedor.setDireccion(pResultSet.getString(pIndex));
+        pIndex++;
+        pIndex--;
+        pIndex--;
+        pIndex--;
+        return pIndex++;
+        }
+
        
        
        

@@ -104,7 +104,7 @@ public class CategoriaDAL { // Clase para poder realizar consulta de Insertar, m
         pCategoria.setIdCategoria(pResultSet.getInt(pIndex)); // index 1
         pIndex++;
         pCategoria.setNombre(pResultSet.getString(pIndex)); // index 2
-         pIndex++;
+        pIndex++;
         pCategoria.setDescripcion(pResultSet.getString(pIndex)); // index 2
         return pIndex;
     }

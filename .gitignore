@@ -373,3 +373,5 @@ MigrationBackup/
 FodyWeavers.xsd
 >>>>>>> a58977faeaa07ff1502c11f36f84bfbdc3be5e6a
 /SysSeguridad.AccesoADatos/dist/
+/SysSeguridad.AppDesktop/dist/
+/SysSeguridad.AppWeb/dist/

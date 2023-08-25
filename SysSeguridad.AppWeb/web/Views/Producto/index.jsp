@@ -1,15 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="sysseguridad.entidadesdenegocio.Producto"%>
 <%@page import="sysseguridad.entidadesdenegocio.Proveedor"%>
+<%@page import="sysseguridad.entidadesdenegocio.Categoria"%>
 <%@page import="java.util.ArrayList"%>
-<% ArrayList<Producto> producto = (ArrayList<Producto>) request.getAttribute("producto");
+<% ArrayList<Producto> productos = (ArrayList<Producto>) request.getAttribute("productos");
     int numPage = 1;
     int numReg = 10;
     int countReg = 0;
-    if (producto== null) {
-        producto = new ArrayList();
-    } else if (producto.size() > numReg) {
-        double divNumPage = (double) producto.size() / (double) numReg;
+    if (productos== null) {
+        productos = new ArrayList();
+    } else if (productos.size() > numReg) {
+        double divNumPage = (double) productos.size() / (double) numReg;
         numPage = (int) Math.ceil(divNumPage);
     }
     String strTop_aux = request.getParameter("top_aux");
@@ -21,11 +22,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:include page="/Views/Shared/title.jsp" />
         <title>Buscar Producto</title>
     </head>
     <body>
-        <jsp:include page="/Views/Shared/headerBody.jsp" />  
+         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Buscar Producto</h5>
             <form action="Producto" method="post">
@@ -48,8 +49,13 @@
                         <label for="txtExistencia">Existencia</label>
                     </div> 
                     <div class="input-field col l4 s12">   
-                        <jsp:include page="/Views/Producto/select.jsp">                           
-                            <jsp:param name="IdProducto" value="0" />  
+                        <jsp:include page="/Views/Categoria/Select.jsp">                           
+                            <jsp:param name="IdCategoria" value="0" />  
+                        </jsp:include>                        
+                    </div>
+                    <div class="input-field col l4 s12">   
+                        <jsp:include page="/Views/Proveedor/select.jsp">                           
+                            <jsp:param name="IdProveedor" value="0" />  
                         </jsp:include>                        
                     </div>
                     <div class="input-field col l4 s12">   
@@ -77,13 +83,15 @@
                                 <th>Nombre</th>  
                                 <th>Descripcion</th> 
                                 <th>Precio</th>  
-                                <th>Existencia</th>  
-                                <th>Proveedor</th>   
-                                <th>Categoria</th>   
+                                <th>Existencia</th> 
+                                 <th>Proveedores</th>
+                                 <th>Categoria</th>                     
+                                <th>Acciones</th> 
+                                 
                             </tr>
                         </thead>                       
                     <tbody>
-                <% for (Producto Producto : producto) {
+                <% for (Producto Producto : productos) {
                  int tempNumPage = numPage;
                  if (numPage > 1) {
                  countReg++;
@@ -96,17 +104,18 @@
                        <td><%=Producto.getNombre()%></td>  
                        <td><%=Producto.getDescripcion()%></td>
                        <td><%=Producto.getPrecio()%></td> 
+                        <td><%=Producto.getExistencia()%></td> 
                        <td><%=Producto.getProveedor().getNombre()%></td> 
-                       <td><%=Producto.getCategoria()%></td> 
+                       <td><%=Producto.getCategoria().getNombre()%></td> 
                        <td>
                     <div style="display:flex">
-                    <a href="Producto?accion=edit&id=<%=Producto.getIdProducto()%>" title="Modificar" class="waves-effect waves-light btn green">
+                    <a href="Producto?accion=edit&IdProducto=<%=Producto.getIdProducto()%>" title="Modificar" class="waves-effect waves-light btn green">
                         <i class="material-icons">edit</i>
                     </a>
-                    <a href="Producto?accion=details&id=<%=Producto.getIdProducto()%>" title="Ver" class="waves-effect waves-light btn blue">
+                    <a href="Producto?accion=details&IdProducto=<%=Producto.getIdProducto()%>" title="Ver" class="waves-effect waves-light btn blue">
                         <i class="material-icons">description</i>
                     </a>
-                    <a href="Producto?accion=delete&id=<%=Producto.getIdProducto()%>" title="Eliminar" class="waves-effect waves-light btn red">
+                    <a href="Producto?accion=delete&IdProducto=<%=Producto.getIdProducto()%>" title="Eliminar" class="waves-effect waves-light btn red">
                     <i class="material-icons">delete</i>
                     </a>    
                        </div>                                                                    

@@ -16,7 +16,7 @@
                 <input type="hidden" name="IdProducto" value="<%=producto.getIdProducto()%>">  
                 <div class="row">
                     <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" name="nombre" value="<%=producto.getNombre()%>" required class="validate" maxlength="30">
+                        <input  id="txtNombre" type="text" name="Nombre" value="<%=producto.getNombre()%>" required class="validate" maxlength="30">
                         <label for="txtNombre">Nombre</label>
                     </div>
                     <div class="input-field col l4 s12">
@@ -33,9 +33,15 @@
                     </div>
                     <div class="input-field col l4 s12">   
                         <jsp:include page="/Views/Proveedor/select.jsp">                           
-                            <jsp:param name="IdProducto" value="<%=producto.getIdProveedor() %>" />  
+                            <jsp:param name="IdProveedor" value="<%=producto.getIdProveedor() %>" />  
                         </jsp:include>  
-                        <span IdProveedor="slProveedor_error" style="color:red" class="helper-text"></span>
+                        <span id="slProveedor_error" style="color:red" class="helper-text"></span>
+                    </div>
+                        <div class="input-field col l4 s12">   
+                        <jsp:include page="/Views/Categoria/Select.jsp">                           
+                            <jsp:param name="IdCategoria" value="<%=producto.getIdCategoria()%>" />  
+                        </jsp:include>  
+                        <span id="slCategoria_error" style="color:red" class="helper-text"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -47,19 +53,7 @@
             </form>          
         </main>
         <jsp:include page="/Views/Shared/footerBody.jsp" />   
-        <script>
-           var slProveedor = document.getElementByIdProveedor("slProveedor");
-           var slProveedor_error = document.getElementByIdProveedor("slProveedor_error");
-                if (slProveedor.value == 0) {
-                    slProveedor_error.innerHTML = "El Proveedor es obligatorio";
-                    result = false;
-                } else {
-                    slProveedor_error.innerHTML = "";
-                }
-
-                return result;
-            }
-        </script>
+    
         
 
     </body>
