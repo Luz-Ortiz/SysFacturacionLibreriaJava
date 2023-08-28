@@ -12,6 +12,7 @@
              <li><a href="Categoria">Categoria</a></li>
              <li><a href="Proveedor">Proveedor</a></li>
              <li><a href="Producto">Producto</a></li>
+            <li><a href="Producto?accion=inventario">Inventario</a></li>
             <li><a href="Usuario?accion=cambiarpass">Cambiar password</a></li>
             <li><a href="Usuario?accion=login">Cerrar sesión</a></li>
             <%}%>
@@ -27,6 +28,7 @@
     <li><a href="Categoria">Categoria</a></li>
      <li><a href="Proveedor">Proveedor</a></li>
      <li><a href="Producto">Producto</a></li>
+     <li><a href="Producto?accion=inventario">Inventario</a></li>
     <li><a href="Usuario?accion=cambiarpass">Cambiar password</a></li>
     <li><a href="Usuario?accion=login">Cerrar sesión</a></li>
      <%}%>

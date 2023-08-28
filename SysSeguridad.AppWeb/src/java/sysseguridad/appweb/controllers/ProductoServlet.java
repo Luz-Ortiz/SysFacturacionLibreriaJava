@@ -314,6 +314,36 @@ public class ProductoServlet extends HttpServlet {
         }
     }
 
+      private void doGetRequestInventario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Producto producto = new Producto(); // Crear una instancia  de la entidad de Usuario.
+            producto.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de Usuario.
+            // Ir a la capa de acceso a datos y buscar los registros de Usuario y asociar Rol.
+            ArrayList<Producto> productos = ProductoDAL.buscarIncluirCategoriaYProveedor(producto);
+            // Enviar los usuarios al jsp utilizando el request.setAttribute con el nombre del atributo usuario.
+            request.setAttribute("productos", productos);
+            // Enviar el Top_aux de Usuario al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
+            request.setAttribute("top_aux", producto.getTop_aux());
+            request.getRequestDispatcher("Views/Producto/inventario.jsp").forward(request, response); // Direccionar al jsp index de Usuario.
+        } catch (Exception ex) {
+            Utilidad.enviarError(ex.getMessage(), request, response); // Enviar al jsp de error si hay un Exception.
+        }
+    }
+      
+     private void doPostRequestInventario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Producto producto = obtenerProducto(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
+            // Ir a la capa de acceso a datos y buscar los registros de Usuario y asociar Rol.
+            ArrayList<Producto> productos = ProductoDAL.buscarIncluirCategoriaYProveedor(producto);
+            // Enviar los usuarios al jsp utilizando el request.setAttribute con el nombre del atributo usuario.
+            request.setAttribute("produtos", productos);
+            // Enviar el Top_aux de Usuario al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
+            request.setAttribute("top_aux", producto.getTop_aux());
+            request.getRequestDispatcher("Views/Producto/inventario.jsp").forward(request, response); // Direccionar al jsp index de Usuario.
+        } catch (Exception ex) {
+            Utilidad.enviarError(ex.getMessage(), request, response); // Enviar al jsp de error si hay un Exception.
+        }
+    }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -363,6 +393,11 @@ public class ProductoServlet extends HttpServlet {
                     // Enviar el atributo accion al jsp de details.
                     request.setAttribute("accion", accion);
                     doGetRequestDetails(request, response); // Ir al metodo doGetRequestDetails.
+                    break;
+               case "inventario":
+                    // Enviar el atributo accion al jsp de details.
+                    request.setAttribute("accion", accion);
+                    doGetRequestInventario(request, response); // Ir al metodo doGetRequestDetails.
                     break;
                 default:
                     // Enviar el atributo accion al jsp de index.
@@ -414,6 +449,11 @@ public class ProductoServlet extends HttpServlet {
                     // Enviar el atributo accion al jsp de delete.
                     request.setAttribute("accion", accion);
                     doPostRequestDelete(request, response); // Ir al metodo doPostRequestDelete.
+                    break;
+                case "Inventario":
+                    // Enviar el atributo accion al jsp de delete.
+                    request.setAttribute("accion", accion);
+                    doPostRequestInventario(request, response); // Ir al metodo doPostRequestDelete.
                     break;
                 default:
                     // Enviar el atributo accion al jsp de index.
