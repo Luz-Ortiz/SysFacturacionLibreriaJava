@@ -22,7 +22,7 @@
                     </div>     
                         
                     <div class="input-field col l4 s12">
-                        <input  IdCategoria="txtDescripcion" type="text" name="Descripcion" value="<%=categoria.getDescripcion()%>" required class="validate" maxlength="30" placeholder="Ingrese el Nombre">
+                        <input  IdCategoria="txtDescripcion" type="text" name="Descripcion" value="<%=categoria.getDescripcion()%>" required class="validate" maxlength="30" placeholder="Ingrese el Descripcion">
                         <label for="txtNombre">Descripcion</label>
                     </div>    
                 </div>
