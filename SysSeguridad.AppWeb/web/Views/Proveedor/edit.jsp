@@ -21,15 +21,15 @@
                         <label for="txtCodigo"></label>
                     </div>   
                     <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" name="nombre" value="<%=proveedor.getNombre()%>" required class="validate" maxlength="30">
+                        <input  id="txtNombre" type="text" name="nombre" value="<%=proveedor.getNombre()%>" required class="validate" maxlength="30" placeholder="Ingrese su Nombre">
                         <label for="txtNombre">Nombre</label>
                     </div> 
                     <div class="input-field col l4 s12">
-                        <input  id="txtTelefono" type="text" name="telefono" value="<%=proveedor.getTelefono()%>" required class="validate" maxlength="20">
+                        <input  id="txtTelefono" type="text" name="telefono" value="<%=proveedor.getTelefono()%>" required class="validate" maxlength="8" placeholder="Ingrese su Numero de  Telefono">
                         <label for="txtTelefono">Telefono</label>
                     </div> 
                     <div class="input-field col l4 s12">
-                        <input  id="txtDireccion" type="text" name="direccion" value="<%=proveedor.getDireccion()%>" required class="validate" maxlength="50">
+                        <input  id="txtDireccion" type="text" name="direccion" value="<%=proveedor.getDireccion()%>" required class="validate" maxlength="50"placeholder="Ingrese su Direccion">
                         <label for="txtDireccion">Direccion</label>
                     </div>       
                 </div>
