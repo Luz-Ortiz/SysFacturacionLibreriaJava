@@ -16,19 +16,19 @@
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">                
                 <div class="row">
                     <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" name="Nombre" required class="validate" maxlength="30">
+                        <input  id="txtNombre" type="text" name="Nombre" required class="validate" maxlength="30" placeholder="Ingrese su nombre">
                         <label for="txtNombre">Nombre</label>
                     </div>
                     <div class="input-field col l4 s12">
-                        <input  id="txtDescripcion" type="text" name="Descripcion" required class="validate" maxlength="30">
+                        <input  id="txtDescripcion" type="text" name="Descripcion" required class="validate" maxlength="30" placeholder="Ingrese su descripción">
                         <label for="txtDescripcion">Descripcion</label>
                     </div>
                     <div class="input-field col l4 s12">
-                        <input  id="txtPrecio" type="text" name="Precio" required class="validate" maxlength="30">
+                        <input  id="txtPrecio" type="text" name="Precio" required class="validate" maxlength="30" placeholder="Ingrese el precio">
                         <label for="txtPrecio">Precio</label>
                     </div>
                     <div class="input-field col l4 s12">
-                        <input  id="txtExistencia" type="text" name="Existencia" required class="validate" maxlength="30">
+                        <input  id="txtExistencia" type="text" name="Existencia" required class="validate" maxlength="30" placeholder="Ingrese la cantidad en existencia">
                         <label for="txtExistencia">Existencias</label>
                     </div>
                     <div class="input-field col l4 s12">   

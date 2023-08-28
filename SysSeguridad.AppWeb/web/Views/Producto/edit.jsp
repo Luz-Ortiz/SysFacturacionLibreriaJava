@@ -16,19 +16,19 @@
                 <input type="hidden" name="IdProducto" value="<%=producto.getIdProducto()%>">  
                 <div class="row">
                     <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" name="Nombre" value="<%=producto.getNombre()%>" required class="validate" maxlength="30">
+                        <input  id="txtNombre" type="text" name="Nombre" value="<%=producto.getNombre()%>" required class="validate" maxlength="30" placeholder="Ingrese el Nombre">
                         <label for="txtNombre">Nombre</label>
                     </div>
                     <div class="input-field col l4 s12">
-                        <input  id="txtDescripcion" type="text" name="Descripcion" value="<%=producto.getDescripcion()%>" required class="validate" maxlength="30">
+                        <input  id="txtDescripcion" type="text" name="Descripcion" value="<%=producto.getDescripcion()%>" required class="validate" maxlength="30" placeholder="Ingrese la Descripcion">
                         <label for="txtDescripcion">Descripcion</label>
                     </div>
                     <div class="input-field col l4 s12">
-                        <input  id="txtPrecio" type="text" name="Precio" value="<%=producto.getPrecio()%>" required class="validate" maxlength="30">
+                        <input  id="txtPrecio" type="text" name="Precio" value="<%=producto.getPrecio()%>" required class="validate" maxlength="30" placeholder="Ingrese el precio">
                         <label for="txtPrecio">Precio</label>
                     </div>
                      <div class="input-field col l4 s12">
-                        <input  id="txtExistencia" type="text" name="Existencia" value="<%=producto.getExistencia()%>" required class="validate" maxlength="30">
+                        <input  id="txtExistencia" type="text" name="Existencia" value="<%=producto.getExistencia()%>" required class="validate" maxlength="30" placeholder="Ingrese la Existencia">
                         <label for="txtExistencia">Existencia</label>
                     </div>
                     <div class="input-field col l4 s12">   
