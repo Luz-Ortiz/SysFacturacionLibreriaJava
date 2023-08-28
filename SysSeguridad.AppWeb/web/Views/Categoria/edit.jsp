@@ -17,12 +17,12 @@
                 <input type="hidden" name="IdCategoria" value="<%=categoria.getIdCategoria()%>">   
                 <div class="row">
                     <div class="input-field col l4 s12">
-                        <input  IdCategoria="txtNombre" type="text" name="Nombre" value="<%=categoria.getNombre()%>" required class="validate" maxlength="30">
+                        <input  IdCategoria="txtNombre" type="text" name="Nombre" value="<%=categoria.getNombre()%>" required class="validate" maxlength="30" placeholder="Ingrese el Nombre">
                         <label for="txtNombre">Nombre</label>
                     </div>     
                         
                     <div class="input-field col l4 s12">
-                        <input  IdCategoria="txtDescripcion" type="text" name="Descripcion" value="<%=categoria.getDescripcion()%>" required class="validate" maxlength="30">
+                        <input  IdCategoria="txtDescripcion" type="text" name="Descripcion" value="<%=categoria.getDescripcion()%>" required class="validate" maxlength="30" placeholder="Ingrese el Nombre">
                         <label for="txtNombre">Descripcion</label>
                     </div>    
                 </div>
