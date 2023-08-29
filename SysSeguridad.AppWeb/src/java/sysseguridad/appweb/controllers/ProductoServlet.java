@@ -344,6 +344,33 @@ public class ProductoServlet extends HttpServlet {
             Utilidad.enviarError(ex.getMessage(), request, response); // Enviar al jsp de error si hay un Exception.
         }
     }
+     
+    private void doGetRequestagregarExistencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Enviar el Producto al jsp de edit que se obtiene por IdProducto
+        requestObtenerPorId(request, response);
+        // Direccionar al jsp edit de Producto
+        request.getRequestDispatcher("Views/Producto/agregarExistencia.jsp").forward(request, response);
+    }
+    
+    
+    private void doPostRequestagregarExistencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Producto producto = obtenerProducto(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
+            // Enviar los datos de Usuario a la capa de accesoa a datos para modificar el registro.
+            int result = ProductoDAL.modificar(producto);
+            if (result != 0) { // Si el result es diferente a cero significa que los datos fueron modificado correctamente.
+                // Enviar el atributo accion con el valor index al jsp de index.
+                request.setAttribute("accion", "index");
+                doGetRequestIndex(request, response); // Ir al metodo doGetRequestIndex para que nos direcciones al jsp index.
+            } else {
+                // Enviar al jsp de error el siguiente mensaje. No se logro actualizar el registro.
+                Utilidad.enviarError("No se logro actualizar el registro", request, response);
+            }
+        } catch (Exception ex) {
+            // Enviar al jsp de error si hay un Exception
+            Utilidad.enviarError(ex.getMessage(), request, response);
+        }
+    }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -398,6 +425,11 @@ public class ProductoServlet extends HttpServlet {
                     // Enviar el atributo accion al jsp de details.
                     request.setAttribute("accion", accion);
                     doGetRequestInventario(request, response); // Ir al metodo doGetRequestDetails.
+                    break;
+                case "agregarExistencia":
+                    // Enviar el atributo accion al jsp de details.
+                    request.setAttribute("accion", accion);
+                    doGetRequestagregarExistencia(request, response); // Ir al metodo doGetRequestDetails.
                     break;
                 default:
                     // Enviar el atributo accion al jsp de index.
@@ -454,6 +486,11 @@ public class ProductoServlet extends HttpServlet {
                     // Enviar el atributo accion al jsp de delete.
                     request.setAttribute("accion", accion);
                     doPostRequestInventario(request, response); // Ir al metodo doPostRequestDelete.
+                    break;
+                case "agregarExistencia":
+                    // Enviar el atributo accion al jsp de delete.
+                    request.setAttribute("accion", accion);
+                    doPostRequestagregarExistencia(request, response); // Ir al metodo doPostRequestDelete.
                     break;
                 default:
                     // Enviar el atributo accion al jsp de index.

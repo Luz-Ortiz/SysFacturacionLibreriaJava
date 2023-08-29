@@ -26,6 +26,7 @@
 %>
 <!DOCTYPE html>
 <head>
+    
     <jsp:include page="/Views/Shared/title.jsp" />
     <title>Inventario</title>
 </head>
@@ -33,34 +34,28 @@
     <jsp:include page="/Views/Shared/headerBody.jsp" />  
     <main class="container">   
         <h5>Inventario</h5>
-        <form action="Producto" method="post">
+        <form action="inventario" method="post">
             <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>"> 
             <div class="row">
                 <div class="input-field col l4 s12">
                     <input  id="txtNombre" type="text" name="nombre">
                     <label for="txtNombre">Nombre</label>
                 </div>
-                <!-- Botón desplegable -->
-                <a class="btn dropdown-trigger" href="#" data-target="dropdown1">Desplegable<i class="material-icons right">arrow_drop_down</i></a>
-
-                <!-- Estructura del menú desplegable -->
-                <ul id="dropdown1" class="dropdown-content">
-                    <li>
-                        <div class="input-field col l4 s12">
-                            <jsp:include page="/Views/Categoria/Select.jsp">
-                                <jsp:param name="IdCategoria" value="0" />
-                            </jsp:include>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="input-field col l4 s12">
-                            <jsp:include page="/Views/Proveedor/select.jsp">
-                                <jsp:param name="IdProveedor" value="0" />
-                            </jsp:include>
-                        </div>
-                    </li>
-                </ul>
-
+                <div class="input-field col l4 s12">   
+                        <jsp:include page="/Views/Proveedor/select.jsp">                           
+                            <jsp:param name="IdProveedor" value="0" />  
+                        </jsp:include>                        
+               </div>  
+                <div class="input-field col l4 s12">   
+                        <jsp:include page="/Views/Categoria/Select.jsp">                           
+                            <jsp:param name="IdCategoria" value="0" />  
+                        </jsp:include>                        
+                </div>
+                  <div class="row">
+                    <div class="col l12 s12">
+                        <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
+                    </div> 
+                </div>
             </div>
         </form>
         <div class="row">
@@ -70,7 +65,9 @@
                         <thead>
                             <tr>                                     
                                 <th>Nombre</th>  
-                                <th>Categoria</th>                     
+                                <th>Descripcion</th> 
+                                 <th>Existecia</th> 
+                                <th>Categoria</th> 
                                 <th>Acciones</th> 
 
                             </tr>
@@ -86,12 +83,14 @@
 
                             %>
                             <tr data-page="<%= tempNumPage%>">                                    
-                                <td><%=Producto.getNombre()%></td>  
+                                <td><%=Producto.getNombre()%></td>
+                                 <td><%=Producto.getDescripcion()%></td>
+                                  <td><%=Producto.getExistencia()%></td>
                                 <td><%=Producto.getCategoria().getNombre()%></td> 
                                 <td>
                                     <div style="display:flex">
-                                        <a href="Producto?accion=edit&IdProducto=<%=Producto.getIdProducto()%>" title="agregarExistencias" class="waves-effect waves-light btn green">
-                                            <i class="material-icons">edit</i>
+                                        <a href="Producto?accion=agregarExistencia&IdProducto=<%=Producto.getIdProducto()%>" title="Existencias" class="waves-effect waves-light btn teal">
+                                            <i class="material-icons">content_paste</i>
                                         </a>
                                     </div>                                                                    
                                 </td>                                   
