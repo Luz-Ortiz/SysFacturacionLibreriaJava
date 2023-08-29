@@ -21,29 +21,33 @@
                 <input type="hidden" name="IdProducto" value="<%=producto.getIdProducto()%>">  
                 <div class="row">
                     <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" value="<%=producto.getNombre()%>" disabled>
+                        <input  id="txtNombre" type="text" name="Nombre" value="<%=producto.getNombre()%>" required class="validate" maxlength="30" placeholder="Ingrese el Nombre" readonly>
                         <label for="txtNombre">Nombre</label>
-                    </div>                       
+                    </div>
                     <div class="input-field col l4 s12">
-                        <input  id="txtDescripcion" type="text" value="<%=producto.getDescripcion()%>" disabled>
+                        <input  id="txtDescripcion" type="text" name="Descripcion" value="<%=producto.getDescripcion()%>" required class="validate" maxlength="30" placeholder="Ingrese la Descripcion" readonly>
                         <label for="txtDescripcion">Descripcion</label>
                     </div>
                     <div class="input-field col l4 s12">
-                        <input  id="txtPrecio" type="text" value="<%=producto.getPrecio()%>" disabled>
+                        <input  id="txtPrecio" type="text" name="Precio" value="<%=producto.getPrecio()%>" required class="validate" maxlength="30" placeholder="Ingrese el precio" readonly>
                         <label for="txtPrecio">Precio</label>
                     </div>
                      <div class="input-field col l4 s12">
                         <input  id="txtExistencia" type="text" name="Existencia" value="<%=producto.getExistencia()%>" required class="validate" maxlength="30" placeholder="Ingrese la Existencia">
                         <label for="txtExistencia">Existencia</label>
                     </div>
-                    <div class="input-field col l4 s12">
-                        <input id="txtProveedor" type="text" value="<%=producto.getProveedor().getNombre()%>" disabled>
-                        <label for="txtProveedor">Proveedor</label>
-                    </div> 
-                   <div class="input-field col l4 s12">
-                        <input id="txtCategoria" type="text" value="<%=producto.getCategoria().getNombre()%>" disabled>
-                        <label for="txtCategoria">Categoria</label>
-                    </div> 
+                    <div class="input-field col l4 s12">   
+                        <jsp:include page="/Views/Proveedor/select.jsp">                           
+                            <jsp:param name="IdProveedor" value="<%=producto.getIdProveedor() %>" />  
+                        </jsp:include>  
+                        <span id="slProveedor_error" style="color:red" class="helper-text"></span>
+                    </div>
+                    <div class="input-field col l4 s12">   
+                        <jsp:include page="/Views/Categoria/Select.jsp">                           
+                            <jsp:param name="IdCategoria" value="<%=producto.getIdCategoria()%>" />  
+                        </jsp:include>  
+                        <span id="slCategoria_error" style="color:red" class="helper-text"></span>
+                    </div>
                  </div>
                 <div class="row">
                     <div class="col l12 s12">

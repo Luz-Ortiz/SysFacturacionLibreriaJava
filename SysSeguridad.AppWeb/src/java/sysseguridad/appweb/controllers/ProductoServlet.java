@@ -360,8 +360,8 @@ public class ProductoServlet extends HttpServlet {
             int result = ProductoDAL.modificar(producto);
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron modificado correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
-                request.setAttribute("accion", "index");
-                doGetRequestIndex(request, response); // Ir al metodo doGetRequestIndex para que nos direcciones al jsp index.
+                request.setAttribute("accion", "inventario");
+                doGetRequestInventario(request, response); // Ir al metodo doGetRequestIndex para que nos direcciones al jsp index.
             } else {
                 // Enviar al jsp de error el siguiente mensaje. No se logro actualizar el registro.
                 Utilidad.enviarError("No se logro actualizar el registro", request, response);

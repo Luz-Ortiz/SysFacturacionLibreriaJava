@@ -37,7 +37,7 @@
                         </jsp:include>  
                         <span id="slProveedor_error" style="color:red" class="helper-text"></span>
                     </div>
-                        <div class="input-field col l4 s12">   
+                    <div class="input-field col l4 s12">   
                         <jsp:include page="/Views/Categoria/Select.jsp">                           
                             <jsp:param name="IdCategoria" value="<%=producto.getIdCategoria()%>" />  
                         </jsp:include>  
