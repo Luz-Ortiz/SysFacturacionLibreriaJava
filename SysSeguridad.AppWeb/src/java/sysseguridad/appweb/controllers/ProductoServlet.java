@@ -482,7 +482,7 @@ public class ProductoServlet extends HttpServlet {
                     request.setAttribute("accion", accion);
                     doPostRequestDelete(request, response); // Ir al metodo doPostRequestDelete.
                     break;
-                case "Inventario":
+                case "inventario":
                     // Enviar el atributo accion al jsp de delete.
                     request.setAttribute("accion", accion);
                     doPostRequestInventario(request, response); // Ir al metodo doPostRequestDelete.
