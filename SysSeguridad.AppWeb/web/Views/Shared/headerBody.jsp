@@ -10,6 +10,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
+            
         }
 
         .sidebar {
@@ -18,7 +19,7 @@
             position: fixed;
             top: -20px; /* Ajusta el margen superior */
             left: -250px;
-            background-color: #84c3be; /* Nuevo color turquesa */
+            background: linear-gradient(to right, #2E8B57, #87CEEB);
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 40px; /* Ajusta el margen superior */
@@ -34,6 +35,7 @@
             text-decoration: none;
             font-size: 20px;
             color: white;
+            font-weight: bold; /* Grosor de las letras */
             display: block;
             transition: 0.3s;
         }

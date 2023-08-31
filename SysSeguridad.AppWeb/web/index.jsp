@@ -97,7 +97,7 @@
         }
         
          .team-section {
-            background-color: #000000;
+            background-color: #5fa874;
             color: #ffffff;
             padding: 60px 0;
             text-align: center;
@@ -106,6 +106,7 @@
         .team-heading {
             font-size: 28px;
             margin-bottom: 20px;
+            font-family: 'Courier New', Courier, monospace; /* Tipo de letra de carta para el título */
         }
 
         .member-container {
@@ -116,30 +117,51 @@
         }
 
         .member {
-            background-color: #ffffff;
-            border-radius: 60%;
+            background: linear-gradient(to bottom right, #4CAF50, #00BCD4); /* Cambio de color agradado en tonos azules */
+            border-radius: 12px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             padding: 25px;
             text-align: center;
-            width: 120px;
-            height: 290px;
-            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            position: relative;
         }
 
         .member img {
             max-width: 80px;
-            border-radius: 55%;
+            border-radius: 50%;
             margin-bottom: 10px;
         }
 
         .member:hover {
             transform: translateY(-5px);
+            box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
             background-color: #B2DFDB;
         }
 
         .member p {
-            margin-top: 10px;
+            margin-top: 15px;
             color: black;
+            font-family: 'Courier New', Courier, monospace; /* Tipo de letra de carta */
+            display: none;
+            display: none; /* Ocultar por defecto */
+            position: absolute;
+            bottom: -10px; /* Ajustar posición */
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .member:hover p {
+            display: block; /* Mostrar al colocar el cursor sobre el cuadro */
         }
     </style>
     </head>
@@ -147,7 +169,7 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
          <div class="jumbotron">
         <h1>Sistema de Facturación de la Librería</h1>
-        <p>Al sistema para aprender a cómo colocarle seguridad a sus aplicaciones web</p> 
+        <p>"Despierta tu curiosidad, el conocimiento espera entre estas páginas."</p> 
     </div>
         <main class="container"> 
         <div class="row">
@@ -216,8 +238,8 @@
             <h3 class="team-heading">Equipo de Desarrollo</h3>
             <div class="member-container">
                 <div class="member">
-                    <img src="ruta-imagen-1.jpg" alt="Miembro 1">
-                    <p>Nombre Miembro 1</p>
+                    <img src="imagenes/rosa.jpeg" alt="Rosa Mirian Hernandez">
+                    <p>Rosa Mirian Hernandez</p>
                 </div>
                 <div class="member">
                     <img src="imagenes/David.jpeg" alt="Jose David Montoya">
@@ -232,8 +254,8 @@
                     <p>Jackeline Melissa Cabrera</p>
                 </div>
                 <div class="member">
-                    <img src="ruta-imagen-5.jpg" alt="Miembro 5">
-                    <p>Nombre Miembro 5</p>
+                    <img src="imagenes/yasmin.jpg" alt="Leticia Yasmin Orellana">
+                    <p>Leticia Yasmin Orellana</p>
                 </div>
             </div>
         </div>
