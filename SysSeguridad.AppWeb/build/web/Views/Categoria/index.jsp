@@ -41,17 +41,37 @@
             margin-right: 10px;
         }
         /* Estilos para los botones de acción */
-        .btn-action {
-            font-weight: bold;
-            border-radius: 50%;
-            padding: 6px;
-            margin: 0 4px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .btn-action:hover {
-            background-color: #1E88E5;
-            color: white;
-        }
+        ./* Estilos para los botones de acción */
+.btn-action {
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 6px;
+    margin: 0 4px;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}
+.btn-action i {
+    font-size: 20px;
+}
+.btn-action:hover {
+    background-color: #1565C0;
+    color: white;
+}
+.btn-modify {
+    background-color: #FFC107;
+}
+.btn-view {
+    background-color: #4CAF50;
+}
+.btn-delete {
+    background-color: #E53935;
+}
+
+        
         /* Estilos para el menú */
         .sidebar {
             height: 100%;
