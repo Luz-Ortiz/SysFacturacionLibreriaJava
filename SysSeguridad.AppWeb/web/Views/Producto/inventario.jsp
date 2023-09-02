@@ -90,7 +90,7 @@
                                 <td>
                                     <div style="display:flex">
                                         <a href="Producto?accion=agregarExistencia&IdProducto=<%=Producto.getIdProducto()%>" title="Existencias" class="waves-effect waves-light btn teal">
-                                            <i class="material-icons">content_paste</i>
+                                            <i class="material-icons">inventory_2</i>
                                         </a>
                                     </div>                                                                    
                                 </td>                                   

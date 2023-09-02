@@ -3,7 +3,7 @@
 <% Proveedor proveedor = (Proveedor) request.getAttribute("proveedor");%>
 <!DOCTYPE html>
 <html>
-<head>        
+<head>
     <jsp:include page="/Views/Shared/title.jsp" />
     <title>Eliminar Proveedor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -20,27 +20,27 @@
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        /* Estilos para los botones */
         .btn-action {
             margin-right: 10px;
         }
+        /* Estilos para los botones de acción */
         .btn-action:hover {
-            background-color: #1E88E5 !important;
+            background-color: #1E88E5 !important; /* Cambia el color en el hover */
         }
         .btn-action i {
-            font-weight: bold;
+            font-weight: bold; /* Agrega un peso más fuerte a los iconos */
         }
         /* Estilos para el menú */
         .sidebar {
             height: 100%;
             width: 250px;
             position: fixed;
-            top: -20px;
+            top: -20px; /* Ajusta el margen superior */
             left: -250px;
             background: linear-gradient(to right, #2E8B57, #87CEEB);
             overflow-x: hidden;
             transition: 0.5s;
-            padding-top: 40px;
+            padding-top: 40px; /* Ajusta el margen superior */
             z-index: 1;
         }
         .sidebar.active {
@@ -99,7 +99,7 @@
                 </div>
                 <div class="row">
                     <div class="col l12 s12">
-                        <button type="submit" class="waves-effect waves-light btn blue"><i class="material-icons right">delete</i>Eliminar</button>
+                        <button type="submit" class="waves-effect waves-light btn red"><i class="material-icons right">delete</i>Eliminar</button>
                         <a href="Proveedor" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
                     </div>
                 </div>
@@ -116,5 +116,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
+
 
 
